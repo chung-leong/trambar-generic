@@ -37,7 +37,10 @@ function FrontEnd(props) {
             dataSource.removeEventListener('change', setDataChanged);
             routeManager.removeEventListener('change', setRouteChanged);
         };
-    });
+    }, [ dataSource, routeManager ]);
+    useEffect(() => {
+        dataSource.log();
+    }, []);
 
     const className = (ssr) ? 'ssr' : 'csr';
     return (
