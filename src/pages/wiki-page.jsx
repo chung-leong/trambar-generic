@@ -12,6 +12,21 @@ async function WikiPage(props) {
     const [ show ] = useProgress();
     const rt = useRichText({
         imageHeight: 24,
+        richTextAdjust: (type, props, children) => {
+            if (type === 'a') {
+                if (/^https?:/.test(props.href)) {
+                    const target = '_blank';
+                    props = { ...props, target };
+                } else if (/^[\w\-]+$/.test(props.href)) {
+                    const href = route.find('wiki', {
+                        slug: props.href,
+                        identifier: route.params.identifier,
+                    });
+                    props = { ...props, href };
+                }
+            }
+            return { type, props, children };
+        }
     });
     const f = useLanguageFilter();
 

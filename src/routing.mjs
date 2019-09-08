@@ -24,25 +24,25 @@ const routes = {
         }
     },
     'wiki': {
-        path: '/wiki/${identifier}/${slug}',
+        path: '/wiki/${identifier}/${slug}/',
         load: (match) => {
             match.params.module = require('pages/wiki-page.jsx');
         }
     },
     'excel': {
-        path: '/excel/${identifier}',
+        path: '/excel/${identifier}/',
         load: (match) => {
             match.params.module = require('pages/excel-page.jsx');
         }
     },
     'blog': {
-        path: '/blog/${identifier}',
+        path: '/blog/${identifier}/',
         load: (match) => {
             match.params.module = require('pages/blog-page.jsx');
         }
     },
     'blog-post': {
-        path: '/blog/${identifier}/${slug}',
+        path: '/blog/${identifier}/${slug}/',
         load: (match) => {
             match.params.module = require('pages/blog-post-page.jsx');
         }
