@@ -1,0 +1,37 @@
+@import '../variables.scss';
+
+.top-navigation {
+    color: #eeeeee;
+    background-color: #0033aa;
+    padding: 0.25em 0.25em 0.25em 0.25em;
+
+    .title {
+        padding: 0.25em 0.25em 0.25em 0.25em;
+        margin: 0;
+    }
+
+    .languages {
+        float: right;
+
+        A {
+            text-transform: uppercase;
+        }
+    }
+
+    .button {
+        display: inline-block;
+        padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+
+    A {
+        &:link, &:visited {
+            color: #eeeeee;
+            text-decoration: none;
+
+            &:hover {
+                color: #aaaaff;
+                text-decoration: underline;
+            }
+        }
+    }
+}

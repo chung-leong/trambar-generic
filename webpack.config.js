@@ -1,0 +1,88 @@
+var FS = require('fs');
+var Path = require('path');
+var Webpack = require('webpack');
+var NamedChunksPlugin = Webpack.NamedChunksPlugin;
+var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+var MiniCSSExtractPlugin = require("mini-css-extract-plugin");
+
+var event = process.env.npm_lifecycle_event;
+
+var clientConfig = {
+    mode: (event === 'build') ? 'production' : 'development',
+    context: Path.resolve('./src'),
+    entry: 'www-entry.mjs',
+    output: {
+        path: Path.resolve('./www'),
+        filename: 'index.js',
+        chunkFilename: '[name].js',
+    },
+    resolve: {
+        extensions: [ '.js', '.jsx', '.mjs' ],
+        modules: [ Path.resolve('./src'), 'node_modules' ],
+    },
+    module: {
+        rules: [
+            {
+                test: /\.(jsx|mjs)$/,
+                loader: 'babel-loader',
+                type: 'javascript/auto',
+                query: {
+                    presets: [
+                        [ 'env', { modules: false } ],
+                        'react',
+                        'stage-0',
+                    ],
+                    plugins: [
+                        'syntax-async-functions',
+                        'syntax-class-properties',
+                        'transform-regenerator',
+                        'transform-runtime',
+                    ]
+                }
+            },
+            {
+                test: /\.scss$/,
+                use: [
+                    MiniCSSExtractPlugin.loader,
+                    'css-loader',
+                    'sass-loader'
+                ],
+            },
+        ]
+    },
+    plugins: [
+        new NamedChunksPlugin,
+        new BundleAnalyzerPlugin({
+            analyzerMode: (event === 'build') ? 'static' : 'disabled',
+            reportFilename: `report.html`,
+            openAnalyzer: false,
+        }),
+        new MiniCSSExtractPlugin({
+            filename: "[name].css",
+            chunkFilename: "[id].css"
+        }),
+    ],
+    optimization: {
+        concatenateModules: false,
+    },
+    devtool: (event === 'build') ? 'source-map' : 'inline-source-map',
+    devServer: require('./webpack-dev-server.config.js'),
+};
+
+var serverConfig = {
+    mode: clientConfig.mode,
+    context: clientConfig.context,
+    entry: 'ssr-entry.mjs',
+    target: 'node',
+    output: {
+        path: Path.resolve('./ssr'),
+        filename: 'index.js',
+        chunkFilename: '[name].js',
+        libraryTarget: 'commonjs2',
+    },
+    resolve: clientConfig.resolve,
+    module: clientConfig.module,
+    plugins: clientConfig.plugins,
+};
+
+module.exports = [ clientConfig, serverConfig ];
