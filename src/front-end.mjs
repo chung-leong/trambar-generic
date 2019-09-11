@@ -47,7 +47,9 @@ function FrontEnd(props) {
         <TextContext.Provider value={textOptions}>
             <div className={className}>
                 {renderNavigation()}
-                {renderCurrentPage()}
+                <div className="page-container">
+                    {renderCurrentPage()}
+                </div>
             </div>
         </TextContext.Provider>
     );

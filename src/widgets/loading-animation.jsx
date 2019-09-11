@@ -4,7 +4,7 @@ import './loading-animation.scss';
 
 function LoadingAnimation(props) {
     return (
-        <div>Loading?</div>
+        <div>Loading</div>
     );
 }
 

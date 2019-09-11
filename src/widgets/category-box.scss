@@ -1,0 +1,14 @@
+.category-box {
+    color: #0033aa;
+    padding: 0.5em 0.5em 0.5em 0.5em;
+    border: 3px solid #0033aa;
+    transition: opacity 0.25s;
+
+    H4 {
+        margin: 0;
+    }
+
+    &.hidden {
+        opacity: 0;
+    }
+}
