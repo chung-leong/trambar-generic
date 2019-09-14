@@ -1,8 +1,8 @@
-@import '../variables.scss';
+@import '../global.scss';
 
 .top-navigation {
-    color: #eeeeee;
-    background-color: #0033aa;
+    color: $nav-fg-color;
+    background-color: $nav-bg-color;
     padding: 0.25em 0.5em 0.25em 0.5em;
 
     .title {
@@ -25,11 +25,11 @@
 
     A {
         &:link, &:visited {
-            color: #eeeeee;
+            color: $nav-fg-color;
             text-decoration: none;
 
             &:hover {
-                color: #aaaaff;
+                color: $nav-hover-color;
                 text-decoration: underline;
             }
         }

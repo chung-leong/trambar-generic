@@ -1,6 +1,8 @@
-@import '../variables.scss';
+@import '../global.scss';
 
 .wiki-page {
+    @extend .page;
+
     IMG {
         vertical-align: middle;
     }

@@ -1,4 +1,9 @@
-@import '../variables.scss';
+@import '../global.scss';
 
 .blog-page {
+    @extend .page;
+
+    .date {
+        margin-top: -0.8em;
+    }
 }

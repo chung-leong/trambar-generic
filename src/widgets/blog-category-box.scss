@@ -1,0 +1,9 @@
+@import '../global.scss';
+
+.blog-category-box {
+    @extend .side-box;
+
+    .categories {
+        padding-inline-start: 2em;
+    }
+}

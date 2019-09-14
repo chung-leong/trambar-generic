@@ -41,12 +41,25 @@ const routes = {
             match.params.module = require('pages/blog-page.jsx');
         }
     },
+    'blog-category': {
+        path: '/blog/${identifier}/categories/${slug}/',
+        load: (match) => {
+            match.params.module = require('pages/blog-category-page.jsx');
+        }
+    },
+    'blog-tag': {
+        path: '/blog/${identifier}/tags/${slug}/',
+        load: (match) => {
+            match.params.module = require('pages/blog-tag-page.jsx');
+        }
+    },
     'blog-post': {
         path: '/blog/${identifier}/${slug}/',
         load: (match) => {
             match.params.module = require('pages/blog-post-page.jsx');
         }
-    }
+    },
+
 };
 
 class CommitRewriter {

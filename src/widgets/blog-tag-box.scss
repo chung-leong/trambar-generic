@@ -1,0 +1,16 @@
+@import '../global.scss';
+
+.blog-tag-box {
+    @extend .side-box;
+
+    .tags {
+        padding-top: 0.8em;
+        padding-left: 1em;
+
+        SPAN {
+            &::after {
+                content: " ";
+            }
+        }
+    }
+}

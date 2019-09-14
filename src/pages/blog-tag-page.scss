@@ -1,0 +1,5 @@
+@import './blog-page.scss';
+
+.blog-tag-page {
+    @extend .blog-page;
+}

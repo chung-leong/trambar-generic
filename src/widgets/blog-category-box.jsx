@@ -2,9 +2,9 @@ import React from 'react';
 import Relaks, { useProgress } from 'relaks';
 import { useRichText } from 'trambar-www';
 
-import './category-box.scss';
+import './blog-category-box.scss';
 
-async function CategoryBox(props) {
+async function BlogCategoryBox(props) {
     const { db, route, ids } = props;
     const { identifier } = route.params;
     const [ show ] = useProgress();
@@ -16,12 +16,14 @@ async function CategoryBox(props) {
 
     function render() {
         if (!categories || categories.length === 0) {
-            show(<div className="category-box hidden"/>);
+            show(<div className="blog-category-box hidden" />);
         } else {
             show(
-                <div className="category-box">
+                <div className="blog-category-box">
                     <h4>{renderTitle()}</h4>
-                    <ul>{categories.map(renderCateogry)}</ul>
+                    <ul className="categories">
+                        {categories.map(renderCategory)}
+                    </ul>
                 </div>
             );
         }
@@ -31,20 +33,20 @@ async function CategoryBox(props) {
         return (ids.length === 1) ? 'Category' : 'Categories';
     }
 
-    function renderCateogry(category) {
+    function renderCategory(category) {
         const { slug } = category;
-        const url = route.find('blog', { identifier, slug });
+        const url = route.find('blog-category', { identifier, slug });
         const label = rt(category.name);
         return (
-            <li className="category">
+            <li>
                 <a href={url}>{label}</a>
             </li>
         );
     }
 }
 
-const component = Relaks.memo(CategoryBox);
+const component = Relaks.memo(BlogCategoryBox);
 
 export {
-    component as CategoryBox,
+    component as BlogCategoryBox,
 };

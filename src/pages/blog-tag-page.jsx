@@ -3,24 +3,22 @@ import Relaks, { useProgress } from 'relaks';
 import { useRichText, useDateText } from 'trambar-www';
 
 import { LoadingAnimation } from '../widgets/loading-animation.jsx';
-import { BlogCategoryBox } from '../widgets/blog-category-box.jsx';
 import { BlogTagBox } from '../widgets/blog-tag-box.jsx';
 
-import './blog-page.scss';
+import './blog-tag-page.scss';
 
-async function BlogPage(props) {
+async function BlogTagPage(props) {
     const { db, route } = props;
-    const { identifier } = route.params;
+    const { identifier, slug } = route.params;
     const [ show ] = useProgress();
     const rt = useRichText();
     const dt = useDateText();
 
     render();
-    const posts = await db.fetchWPPosts(identifier);
+    const tag = await db.fetchWPTag(identifier, slug);
     render();
-    const categories = await db.fetchWPCategories(identifier);
-    render();
-    const tags = await db.fetchWPTags(identifier, { orderby: 'count', order: 'desc' });
+    const criteria = { tags: tag.id };
+    const posts = await db.fetchWPPosts(identifier, criteria);
     render();
 
     function render() {
@@ -28,17 +26,25 @@ async function BlogPage(props) {
             show(<LoadingAnimation />);
         } else {
             show(
-                <div className="blog-page">
+                <div className="blog-tag-page">
                     <div className="contents">
+                        {renderTitle()}
                         {posts.map(renderPost)}
                     </div>
                     <div className="side-bar">
-                        {renderCategoryBox()}
                         {renderTagBox()}
                     </div>
                 </div>
             );
         }
+    }
+
+    function renderTitle() {
+        if (!tag) {
+            return;
+        }
+        const { name } = tag;
+        return <h2>Tag: {rt(name)}</h2>;
     }
 
     function renderPost(post, i) {
@@ -55,20 +61,14 @@ async function BlogPage(props) {
         );
     }
 
-    function renderCategoryBox() {
-        const ids = (categories) ? categories.map((c) => c.id) : [];
-        const props = { db, route, ids };
-        return <BlogCategoryBox {...props} />;
-    }
-
     function renderTagBox() {
-        const ids = (tags) ? tags.map((t) => t.id) : [];
+        const ids = [];
         const props = { db, route, ids };
         return <BlogTagBox {...props} />;
     }
 }
 
-const component = Relaks.memo(BlogPage);
+const component = Relaks.memo(BlogTagPage);
 
 export {
     component as default,

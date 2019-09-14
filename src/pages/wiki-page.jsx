@@ -38,7 +38,13 @@ async function WikiPage(props) {
         if (!page) {
             show(<LoadingAnimation />);
         } else {
-            show(<div className="wiki-page">{rt(page)}</div>);
+            show(
+                <div className="wiki-page">
+                    <div className="contents">
+                        {rt(page)}
+                    </div>
+                </div>
+            );
         }
     }
 }

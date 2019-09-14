@@ -1,10 +1,7 @@
-@import './variables.scss';
+@import './global.scss';
 
-body {
-    font-family: sans-serif;
-    margin: 0;
-}
-
-.page-container {
-    margin: 1em 0 1em 1em;
+.front-end {
+    .page-container {
+        margin: 0 0 1em 1em;
+    }
 }

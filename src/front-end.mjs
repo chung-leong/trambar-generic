@@ -42,12 +42,15 @@ function FrontEnd(props) {
         dataSource.log();
     }, []);
 
-    const className = (ssr) ? 'ssr' : 'csr';
+    const classNames = [ 'front-end' ];
+    if (ssr) {
+        classNames.push('ssr');
+    }
     return (
         <TextContext.Provider value={textOptions}>
-            <div className={className}>
+            <div className={classNames.join(' ')}>
                 {renderNavigation()}
-                <div className="page-container">
+                <div className="page-container" key={route.url}>
                     {renderCurrentPage()}
                 </div>
             </div>

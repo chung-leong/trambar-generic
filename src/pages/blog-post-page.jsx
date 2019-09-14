@@ -3,7 +3,8 @@ import Relaks, { useProgress } from 'relaks';
 import { useRichText } from 'trambar-www';
 
 import { LoadingAnimation } from '../widgets/loading-animation.jsx';
-import { CategoryBox } from '../widgets/category-box.jsx';
+import { BlogCategoryBox } from '../widgets/blog-category-box.jsx';
+import { BlogTagBox } from '../widgets/blog-tag-box.jsx';
 
 import './blog-post-page.scss';
 
@@ -17,8 +18,6 @@ async function BlogPostPage(props) {
     const post = await db.fetchWPPost(identifier, slug);
     render();
     const author = await db.fetchWPUser(identifier, post.author);
-    render();
-    const tags = await db.fetchWPTags(identifier, post.tags);
     render();
 
     function render() {
@@ -43,13 +42,13 @@ async function BlogPostPage(props) {
     function renderCategoryBox() {
         const ids = (post) ? post.categories : [];
         const props = { db, route, ids };
-        return <CategoryBox {...props} />;
+        return <BlogCategoryBox {...props} />;
     }
 
     function renderTagBox() {
-        const ids = (post) ? post.categories : [];
+        const ids = (post) ? post.tags : [];
         const props = { db, route, ids };
-        return null;
+        return <BlogTagBox {...props} />;
     }
 }
 
