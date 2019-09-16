@@ -3,6 +3,7 @@ import Relaks, { useProgress } from 'relaks';
 import { useRichText, useDateText } from 'trambar-www';
 
 import { LoadingAnimation } from '../widgets/loading-animation.jsx';
+import { BlogCategoryBox } from '../widgets/blog-category-box.jsx';
 import { BlogTagBox } from '../widgets/blog-tag-box.jsx';
 
 import './blog-tag-page.scss';
@@ -17,8 +18,11 @@ async function BlogTagPage(props) {
     render();
     const tag = await db.fetchWPTag(identifier, slug);
     render();
-    const criteria = { tags: tag.id };
-    const posts = await db.fetchWPPosts(identifier, criteria);
+    const posts = await db.fetchWPPostsTag(identifier, tag);
+    render();
+    const categories = await db.fetchWPCategoriesTopLevel(identifier);
+    render();
+    const tags = await db.fetchWPTagsPopular(identifier);
     render();
 
     function render() {
@@ -32,6 +36,7 @@ async function BlogTagPage(props) {
                         {posts.map(renderPost)}
                     </div>
                     <div className="side-bar">
+                        {renderCategoryBox()}
                         {renderTagBox()}
                     </div>
                 </div>
@@ -61,8 +66,14 @@ async function BlogTagPage(props) {
         );
     }
 
+    function renderCategoryBox() {
+        const ids = (categories) ? categories.map((c) => c.id) : [];
+        const props = { db, route, ids };
+        return <BlogCategoryBox {...props} />;
+    }
+
     function renderTagBox() {
-        const ids = [];
+        const ids = (tags) ? tags.map((t) => t.id) : [];
         const props = { db, route, ids };
         return <BlogTagBox {...props} />;
     }

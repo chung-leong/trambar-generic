@@ -1,0 +1,18 @@
+.search-box {
+    float: right;
+
+    INPUT {
+        border: 0;
+        padding: 3px 3px 3px 3px;
+        margin-right: 8px;
+        width: 20em;
+        vertical-align: text-bottom;
+    }
+
+    .magnifying-class {
+        display: inline-block;
+        transform: rotate(45deg);
+        font-weight: bold;
+        font-size: 1.2em;
+    }
+}

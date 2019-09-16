@@ -1,0 +1,9 @@
+@import '../global.scss';
+
+.search-history-box {
+    @extend .side-box;
+
+    .search {
+        padding-inline-start: 2em;
+    }
+}

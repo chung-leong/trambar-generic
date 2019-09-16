@@ -33,12 +33,12 @@ async function BlogCategoryBox(props) {
         return (ids.length === 1) ? 'Category' : 'Categories';
     }
 
-    function renderCategory(category) {
+    function renderCategory(category, i) {
         const { slug } = category;
         const url = route.find('blog-category', { identifier, slug });
         const label = rt(category.name);
         return (
-            <li>
+            <li key={i}>
                 <a href={url}>{label}</a>
             </li>
         );

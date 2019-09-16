@@ -4,6 +4,7 @@ import { useRichText, useDateText } from 'trambar-www';
 
 import { LoadingAnimation } from '../widgets/loading-animation.jsx';
 import { BlogCategoryBox } from '../widgets/blog-category-box.jsx';
+import { BlogTagBox } from '../widgets/blog-tag-box.jsx';
 
 import './blog-category-page.scss';
 
@@ -17,8 +18,11 @@ async function BlogCategoryPage(props) {
     render();
     const category = await db.fetchWPCategory(identifier, slug);
     render();
-    const criteria = { categories: category.id };
-    const posts = await db.fetchWPPosts(identifier, criteria);
+    const posts = await db.fetchWPPostsCategory(identifier, category);
+    render();
+    const categories = await db.fetchWPCategoriesTopLevel(identifier);
+    render();
+    const tags = await db.fetchWPTagsPopular(identifier);
     render();
 
     function render() {
@@ -33,6 +37,7 @@ async function BlogCategoryPage(props) {
                     </div>
                     <div className="side-bar">
                         {renderCategoryBox()}
+                        {renderTagBox()}
                     </div>
                 </div>
             );
@@ -62,9 +67,15 @@ async function BlogCategoryPage(props) {
     }
 
     function renderCategoryBox() {
-        const ids = [];
+        const ids = (categories) ? categories.map((c) => c.id) : [];
         const props = { db, route, ids };
         return <BlogCategoryBox {...props} />;
+    }
+
+    function renderTagBox() {
+        const ids = (tags) ? tags.map((t) => t.id) : [];
+        const props = { db, route, ids };
+        return <BlogTagBox {...props} />;
     }
 }
 

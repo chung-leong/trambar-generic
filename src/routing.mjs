@@ -59,6 +59,15 @@ const routes = {
             match.params.module = require('pages/blog-post-page.jsx');
         }
     },
+    'search': {
+        path: '/search/',
+        query: {
+            q: '${search}',
+        },
+        load: (match) => {
+            match.params.module = require('pages/search-page.jsx');
+        }
+    },
 
 };
 

@@ -11,7 +11,12 @@ class Database {
         return this.dataSource.fetchExcelFile(identifier);
     }
 
-    async fetchExcelFiles() {
+    async fetchExcelFiles(criteria) {
+        return this.dataSource.fetchExcelFiles();
+    }
+
+    async fetchExcelFilesSearch(search) {
+        const criteria = { search };
         return this.dataSource.fetchExcelFiles();
     }
 
@@ -19,8 +24,13 @@ class Database {
         return this.dataSource.fetchWikiPage(identifier, slug);
     }
 
-    async fetchWikiPages(identifier) {
-        return this.dataSource.fetchWikiPages(identifier);
+    async fetchWikiPages(identifier, criteria) {
+        return this.dataSource.fetchWikiPages(identifier, criteria);
+    }
+
+    async fetchWikiPagesSearch(search) {
+        const criteria = { search };
+        return this.dataSource.fetchWikiPages(undefined, criteria);
     }
 
     async fetchWPCategory(identifier, criteria) {
@@ -28,6 +38,11 @@ class Database {
     }
 
     async fetchWPCategories(identifier, criteria) {
+        return this.dataSource.fetchWPCategories(identifier, criteria);
+    }
+
+    async fetchWPCategoriesTopLevel(identifier) {
+        const criteria = { parent: 0 };
         return this.dataSource.fetchWPCategories(identifier, criteria);
     }
 
@@ -39,12 +54,33 @@ class Database {
         return this.dataSource.fetchWPPosts(identifier, criteria);
     }
 
+    async fetchWPPostsCategory(identifier, category) {
+        const criteria = { categories: category.id };
+        return this.dataSource.fetchWPPosts(identifier, criteria);
+    }
+
+    async fetchWPPostsTag(identifier, tag) {
+        const criteria = { tags: tag.id };
+        return this.dataSource.fetchWPPosts(identifier, criteria);
+    }
+
+    async fetchWPPostsSearch(search) {
+        //const criteria = { categories: category.id };
+        //return this.dataSource.fetchWPPosts(identifier, criteria);
+        return [];
+    }
+
     async fetchWPSites() {
         return this.dataSource.fetchWPSites();
     }
 
     async fetchWPTag(identifier, criteria) {
         return this.dataSource.fetchWPTag(identifier, criteria);
+    }
+
+    async fetchWPTagsPopular(identifier) {
+        const criteria = { orderby: 'count', order: 'desc' };
+        return this.dataSource.fetchWPTags(identifier, criteria);
     }
 
     async fetchWPTags(identifier, criteria) {

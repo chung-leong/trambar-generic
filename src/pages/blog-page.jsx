@@ -18,9 +18,9 @@ async function BlogPage(props) {
     render();
     const posts = await db.fetchWPPosts(identifier);
     render();
-    const categories = await db.fetchWPCategories(identifier);
+    const categories = await db.fetchWPCategoriesTopLevel(identifier);
     render();
-    const tags = await db.fetchWPTags(identifier, { orderby: 'count', order: 'desc' });
+    const tags = await db.fetchWPTagsPopular(identifier);
     render();
 
     function render() {

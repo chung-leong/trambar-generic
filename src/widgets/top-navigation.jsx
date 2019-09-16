@@ -2,6 +2,8 @@ import React, { useCallback } from 'react';
 import Relaks, { useProgress } from 'relaks';
 import { useLanguageFilter } from 'trambar-www';
 
+import { SearchBox } from './search-box.jsx';
+
 import './top-navigation.scss';
 
 async function TopNavigation(props) {
@@ -34,6 +36,7 @@ async function TopNavigation(props) {
                 {renderLanguages()}
                 {renderTitle()}
                 {renderMenu()}
+                {renderSearchBox()}
             </div>
         );
     }
@@ -101,6 +104,10 @@ async function TopNavigation(props) {
                 {button.label}
             </a>
         );
+    }
+
+    function renderSearchBox() {
+        return <SearchBox route={route} />;
     }
 }
 

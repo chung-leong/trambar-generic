@@ -11,18 +11,18 @@ async function BlogTagBox(props) {
     const rt = useRichText();
 
     render();
-    const categories = await db.fetchWPTags(identifier, ids);
+    const tags = await db.fetchWPTags(identifier, ids);
     render();
 
     function render() {
-        if (!categories || categories.length === 0) {
+        if (!tags || tags.length === 0) {
             show(<div className="blog-tag-box hidden" />);
         } else {
             show(
                 <div className="blog-tag-box">
                     <h4>{renderTitle()}</h4>
                     <div className="tags">
-                        {categories.map(renderTag)}
+                        {tags.map(renderTag)}
                     </div>
                 </div>
             );
@@ -33,11 +33,11 @@ async function BlogTagBox(props) {
         return (ids.length === 1) ? 'Tag' : 'Tags';
     }
 
-    function renderTag(tag) {
+    function renderTag(tag, i) {
         const { slug } = tag;
         const url = route.find('blog-tag', { identifier, slug });
         const label = rt(tag.name);
-        return <span><a href={url}>{label}</a></span>;
+        return <span key={i}><a href={url}>{label}</a></span>;
     }
 }
 

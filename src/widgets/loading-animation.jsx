@@ -4,8 +4,8 @@ import './loading-animation.scss';
 
 function LoadingAnimation(props) {
     return (
-        <div class="loading-animation">
-            <div class="blocks">
+        <div className="loading-animation">
+            <div className="blocks">
                 <div /><div /><div />
             </div>
         </div>
