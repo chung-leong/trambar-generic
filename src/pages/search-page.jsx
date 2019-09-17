@@ -13,16 +13,27 @@ async function SearchPage(props) {
     const [ show ] = useProgress();
     const rt = useRichText();
 
+    let hasResults = false, searchComplete = false;
     render();
     const wikis = await db.fetchWikiPagesSearch(search);
+    if (wikis.length > 0) {
+        hasResults = true;
+    }
     render();
     const files = await db.fetchExcelFilesSearch(search);
+    if (files.length > 0) {
+        hasResults = true;
+    }
     render();
     const posts = await db.fetchWPPostsSearch(search);
+    if (posts.length > 0) {
+        hasResults = true;
+    }
+    searchComplete = true;
     render();
 
     function render() {
-        if (!wikis) {
+        if (!hasResults && !searchComplete) {
             show(<LoadingAnimation />);
         } else {
             show(
@@ -42,7 +53,11 @@ async function SearchPage(props) {
     }
 
     function renderTitle() {
-        return <h2>Search results: (1)</h2>;
+        if (hasResults) {
+            return <h2>Search results</h2>;
+        } else {
+            return <h2>No results</h2>;
+        }
     }
 
     function renderWikis() {
@@ -79,7 +94,6 @@ async function SearchPage(props) {
                 <h4>
                     <a href={url}>{title}</a>
                 </h4>
-                <p>{description}</p>
             </div>
         );
     }

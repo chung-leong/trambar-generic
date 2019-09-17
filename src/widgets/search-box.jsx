@@ -4,7 +4,12 @@ import './search-box.scss';
 
 function SearchBox(props) {
     const { route } = props;
-    const [ search, setSearch ] = useState('');
+    const [ search, setSearch ] = useState(() => {
+        if (route.name === 'search') {
+            return route.params.search;
+        }
+        return '';
+    });
     const link = useRef();
 
     const handleSearchChange = useCallback((evt) => {

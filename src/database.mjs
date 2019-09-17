@@ -12,12 +12,12 @@ class Database {
     }
 
     async fetchExcelFiles(criteria) {
-        return this.dataSource.fetchExcelFiles();
+        return this.dataSource.fetchExcelFiles(criteria);
     }
 
     async fetchExcelFilesSearch(search) {
         const criteria = { search };
-        return this.dataSource.fetchExcelFiles();
+        return this.fetchExcelFiles(criteria);
     }
 
     async fetchWikiPage(identifier, slug) {
