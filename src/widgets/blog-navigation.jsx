@@ -16,6 +16,8 @@ async function BlogNavigation(props) {
     const tags = await fetchTags();
     render();
 
+    preloadPosts();
+
     async function fetchCategories() {
         let criteria;
         if (type === 'list') {
@@ -36,6 +38,15 @@ async function BlogNavigation(props) {
             criteria = post.tags;
         }
         return db.fetchWPTags(identifier, criteria);
+    }
+
+    async function preloadPosts() {
+        for (let category of categories) {
+            await db.fetchWPPosts(identifier, { categories: category.id });
+        }
+        for (let tag of tags) {
+            await db.fetchWPPosts(identifier, { tags: tag.id });
+        }
     }
 
     function render() {
