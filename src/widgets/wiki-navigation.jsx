@@ -12,8 +12,21 @@ async function WikiNavigation(props) {
 
     render();
     const page = await db.fetchWikiPage(identifier, slug);
-    const related = [];
+    const related = await fetchRelated();
     render();
+
+    async function fetchRelated() {
+        const list = [];
+        const slugs = page.links();
+        for (let slug of slugs) {
+            try {
+                const other = await db.fetchWikiPage(identifier, slug);
+                list.push(other);
+            } catch (err) {
+            }
+        }
+        return list;
+    }
 
     function render() {
         show(
@@ -40,9 +53,9 @@ async function WikiNavigation(props) {
     }
 
     function renderPage(page, i) {
-        const { slug } = page;
+        const { slug, title } = page;
         const url = route.find('wiki', { identifier, slug });
-        return <li key={i}><a href={url}>{rt(name)}</a></li>;
+        return <li key={i}><a href={url}>{title}</a></li>;
     }
 }
 
