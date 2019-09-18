@@ -2,6 +2,10 @@ $nav-fg-color: #eeeeee;
 $nav-bg-color: #0033aa;
 $nav-hover-color: #aaaaff;
 
+$dialog-box-background-color: $nav-bg-color;
+$dialog-box-text-color: $nav-fg-color;
+$dialog-box-shadow-color: #000000;
+
 $side-box-fg-color: $nav-bg-color;
 
 * {
@@ -34,7 +38,7 @@ body {
         color: $side-box-fg-color;
         padding: 0.5em 0.5em 0.5em 0.5em;
         border: 3px solid $side-box-fg-color;
-        transition: opacity 0.25s;
+        transition: opacity 0.3s;
         margin-bottom: 1em;
 
         H4 {
@@ -50,29 +54,7 @@ body {
 
         &.hidden {
             opacity: 0;
+            transition: opacity 0s;
         }
-    }
-}
-
-.side-box {
-    color: $side-box-fg-color;
-    padding: 0.5em 0.5em 0.5em 0.5em;
-    border: 3px solid $side-box-fg-color;
-    transition: opacity 0.25s;
-    margin-bottom: 1em;
-
-    H4 {
-        margin: 0;
-    }
-
-    A {
-        &:link, &:visited {
-            text-decoration: none;
-            color: $side-box-fg-color;
-        }
-    }
-
-    &.hidden {
-        opacity: 0;
     }
 }

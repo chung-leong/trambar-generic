@@ -1,8 +1,9 @@
-import React from 'react';
-import Relaks, { useProgress } from 'relaks';
+import React, { useState } from 'react';
+import Relaks, { useProgress, useListener } from 'relaks';
 import { useRichText, useLanguageFilter } from 'trambar-www';
 
 import { LoadingAnimation } from '../widgets/loading-animation.jsx';
+import { ImageDialogBox } from '../widgets/image-dialog-box.jsx';
 
 import './wiki-contents.scss';
 
@@ -10,6 +11,7 @@ async function WikiContents(props) {
     const { db, route } = props;
     const { identifier, slug } = route.params;
     const [ show ] = useProgress();
+    const [ selectedImage, setSelectedImage ] = useState(null);
     const rt = useRichText({
         imageHeight: 24,
         richTextAdjust: (type, props, children) => {
@@ -30,6 +32,19 @@ async function WikiContents(props) {
     });
     const f = useLanguageFilter();
 
+    const handleContentsClick = useListener((evt) => {
+        const { tagName, src } = evt.target;
+        if (tagName === 'IMG') {
+            const image = page.image(src);
+            if (image) {
+                setSelectedImage(image);
+            }
+        }
+    });
+    const handleDialogClose = useListener((evt) => {
+        setSelectedImage(null);
+    });
+
     render();
     const page = f(await db.fetchWikiPage(identifier, slug));
     render();
@@ -40,12 +55,22 @@ async function WikiContents(props) {
         } else {
             show(
                 <div className="wiki-contents">
-                    <div className="contents">
+                    <div className="contents" onClick={handleContentsClick}>
                         {rt(page)}
                     </div>
+                    {renderDialogBox()}
                 </div>
             );
         }
+    }
+
+    function renderDialogBox() {
+        const props = {
+            show: !!selectedImage,
+            image: selectedImage,
+            onClose: handleDialogClose,
+        };
+        return <ImageDialogBox {...props} />;
     }
 }
 
