@@ -18,12 +18,39 @@ body {
     display: flex;
 
     .contents {
-        flex: 1 1 40em;
+        flex: 1 1 auto;
+        overflow: hidden;
     }
 
     .side-bar {
         flex: 0 0 20em;
-        padding: 1em 0 1em 1em;
+    }
+}
+
+.navigation {
+    padding: 1em 0 1em 1em;
+
+    .box {
+        color: $side-box-fg-color;
+        padding: 0.5em 0.5em 0.5em 0.5em;
+        border: 3px solid $side-box-fg-color;
+        transition: opacity 0.25s;
+        margin-bottom: 1em;
+
+        H4 {
+            margin: 0;
+        }
+
+        A {
+            &:link, &:visited {
+                text-decoration: none;
+                color: $side-box-fg-color;
+            }
+        }
+
+        &.hidden {
+            opacity: 0;
+        }
     }
 }
 

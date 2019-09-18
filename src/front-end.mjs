@@ -50,7 +50,7 @@ function FrontEnd(props) {
         <TextContext.Provider value={textOptions}>
             <div className={classNames.join(' ')}>
                 {renderNavigation()}
-                <div className="page-container" key={route.url}>
+                <div className="page-container">
                     {renderCurrentPage()}
                 </div>
             </div>

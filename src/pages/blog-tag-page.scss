@@ -1,5 +1,5 @@
-@import './blog-page.scss';
+@import '../global.scss';
 
 .blog-tag-page {
-    @extend .blog-page;
+    @extend .page;
 }

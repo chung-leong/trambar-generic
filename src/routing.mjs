@@ -38,7 +38,7 @@ const routes = {
     'blog': {
         path: '/blog/${identifier}/',
         load: (match) => {
-            match.params.module = require('pages/blog-page.jsx');
+            match.params.module = require('pages/blog-main-page.jsx');
         }
     },
     'blog-category': {

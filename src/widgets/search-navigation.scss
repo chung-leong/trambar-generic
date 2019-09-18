@@ -1,9 +1,9 @@
 @import '../global.scss';
 
-.blog-category-box {
-    @extend .side-box;
+.search-navigation {
+    @extend .navigation;
 
-    .categories {
+    .search {
         padding-inline-start: 2em;
     }
 }

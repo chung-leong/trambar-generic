@@ -1,8 +1,8 @@
 import React from 'react';
 
-import './search-history-box.scss';
+import './search-navigation.scss';
 
-function SearchHistoryBox(props) {
+function SearchNavigation(props) {
     const { route } = props;
     const { history } = route;
     const searches = [];
@@ -14,27 +14,32 @@ function SearchHistoryBox(props) {
     for (let item of history) {
         if (item.name === 'search') {
             if (!exists[item.params.search]) {
-                searches.push(item);
+                searches.unshift(item);
                 exists[item.params.search] = true;
             }
         }
     }
 
-    if (searches.length === 0) {
-        return <div className="search-history-box hidden" />;
-    } else {
-        return (
-            <div className="search-history-box">
-                <h4>{renderTitle()}</h4>
-                <ul className="categories">
-                    {searches.map(renderSearch)}
-                </ul>
-            </div>
-        );
-    }
+    return (
+        <div className="search-navigation">
+            {renderHistoryBox()}
+        </div>
+    );
 
-    function renderTitle() {
-        return (searches.length === 1) ? 'Previous search' : 'Previous searches';
+    function renderHistoryBox() {
+        const count = searches.length;
+        if (count === 0) {
+            return <div className="box hidden" />;
+        } else {
+            return (
+                <div className="box">
+                    <h4>Previous {(count === 1) ? 'search' : 'searches'}</h4>
+                    <ul className="categories">
+                        {searches.map(renderSearch)}
+                    </ul>
+                </div>
+            );
+        }
     }
 
     function renderSearch(search, i) {
@@ -50,5 +55,5 @@ function SearchHistoryBox(props) {
 }
 
 export {
-    SearchHistoryBox,
+    SearchNavigation,
 };

@@ -1,7 +1,11 @@
 @import '../global.scss';
 
-.blog-tag-box {
-    @extend .side-box;
+.blog-navigation {
+    @extend .navigation;
+    
+    .categories {
+        padding-inline-start: 2em;
+    }
 
     .tags {
         padding-top: 0.8em;

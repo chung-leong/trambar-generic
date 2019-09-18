@@ -1,9 +1,9 @@
 @import '../global.scss';
 
-.search-history-box {
-    @extend .side-box;
+.wiki-navigation {
+    @extend .navigation;
 
-    .search {
+    .pages {
         padding-inline-start: 2em;
     }
 }
