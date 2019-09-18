@@ -31,8 +31,11 @@ async function ExcelContents(props) {
         if (!file) {
             return <LoadingAnimation />;
         } else {
+            const { title, description } = file;
             return (
                 <React.Fragment>
+                    <h1>{title}</h1>
+                    <p>{description}</p>
                     {file.sheets.map(renderSheet)}
                 </React.Fragment>
             );

@@ -55,9 +55,9 @@ async function BlogList(props) {
             return <LoadingAnimation />;
         } else {
             if (category) {
-                return <h2>Category: {rt(category.name)}</h2>;
+                return <h1>Category: {rt(category.name)}</h1>;
             } else if (tag) {
-                return <h2>Tag: {rt(tag.name)}</h2>;
+                return <h1>Tag: {rt(tag.name)}</h1>;
             }
         }
     }
