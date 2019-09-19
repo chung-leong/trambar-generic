@@ -7,8 +7,8 @@ $link-hover-color: #0000cc;
 
 $side-box-fg-color: $nav-bg-color;
 
-$dlg-bg-color: $nav-bg-color;
-$dlg-fg-color: $nav-fg-color;
+$dlg-bg-color: #202020;
+$dlg-fg-color: #ffffff;
 $dlg-shadow-color: #000000;
 
 * {
@@ -67,6 +67,34 @@ A {
         &.hidden {
             opacity: 0;
             transition: opacity 0s;
+        }
+    }
+}
+
+.dialog-box {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    background-color: $dlg-bg-color;
+    color: $dlg-fg-color;
+    padding: 1em 1em 1em 1em;
+    box-shadow: 5px 5px 4px $dlg-shadow-color;
+
+    .buttons {
+        flex: 0 0 auto;
+        padding-top: 0.8em;
+
+        .left {
+            float: left;
+        }
+
+        .right {
+            float: right;
+        }
+
+        BUTTON {
+            border: 1px solid #000;
+            font-size: 1.2em;
         }
     }
 }
@@ -189,26 +217,7 @@ A {
 }
 
 .image-dialog-box {
-    display: flex;
-    position: relative;
-    flex-direction: column;
-    background-color: $dlg-bg-color;
-    color: $dlg-fg-color;
-    padding: 1em 1em 1em 1em;
-    box-shadow: 5px 5px 4px $dlg-shadow-color;
-
-    .buttons {
-        flex: 0 0 auto;
-        padding-top: 0.8em;
-
-        .left {
-            float: left;
-        }
-
-        .right {
-            float: right;
-        }
-    }
+    @extend .dialog-box;
 }
 
 .loading-animation {
@@ -294,7 +303,7 @@ A {
 
     &.show {
         .background {
-            opacity: 0.75;
+            opacity: 0.5;
         }
         .foreground {
             opacity: 1;
