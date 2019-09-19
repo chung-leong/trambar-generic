@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Relaks, { useProgress } from 'relaks';
-import { useRichText, useDateText } from 'trambar-www';
+import { useRichText } from 'trambar-www';
 
 import { LoadingAnimation } from '../widgets/loading-animation.jsx';
 

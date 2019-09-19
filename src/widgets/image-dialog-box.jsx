@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import Relaks, { useListener } from 'relaks';
-import { useRichText } from 'trambar-www';
+import { useRichText, useEnv } from 'trambar-www';
 
 import { Overlay } from './overlay.jsx';
 
 function ImageDialogBox(props) {
     const { database, image, onClose } = props;
+    const env = useEnv();
     const rt = useRichText({
-        imageWidth: 400,
+        imageMaxWidth: env.viewportWidth - 100,
+        imageMaxHeight: env.viewportHeight - 150,
     });
 
     return (
@@ -19,24 +21,6 @@ function ImageDialogBox(props) {
 
     function renderImage() {
         if (image) {
-            const viewportWidth = document.body.clientWidth;
-            const viewportHeight = document.body.clientHeight;
-            const maxWidth = viewportWidth - 100;
-            const maxHeight = viewportHeight - 150;
-            const maxAspectRatio = maxWidth / maxHeight;
-            const aspectRation = image.width / image.height;
-            let imageWidth, imageHeight;
-            if (aspectRation > maxAspectRatio) {
-                imageWidth = Math.min(maxWidth, image.width);
-            } else {
-                imageHeight = Math.min(maxHeight, image.height);
-            }
-            const options = {
-                //devicePixelRatio: env.devicePixelRatio,
-                imageWidth,
-                imageHeight,
-                //imageBaseURL: env.address,
-            };
             return rt(image);
         }
     }

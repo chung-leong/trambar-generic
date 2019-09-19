@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import { useEventTime } from 'relaks';
-import { TextContext } from 'trambar-www';
+import { Env, useEnvMonitor } from 'trambar-www';
 import { Database } from './database.mjs';
 import { Route } from './routing.mjs';
 
@@ -19,12 +19,11 @@ function FrontEnd(props) {
         return new Route(routeManager);
     }, [ routeManager, routeChanged ]);
     const [ currentLanguage, setCurrentLanguage ] = useState(lang);
-    const textOptions = useMemo(() => {
-        return {
-            imageBaseURL: dataSource.options.baseURL,
-            language: currentLanguage,
-        };
-    }, [ dataSource, currentLanguage ]);
+    const env = useEnvMonitor({
+        imageBaseURL: dataSource.options.baseURL,
+        language: currentLanguage,
+        ssr,
+    });
 
     const handleLangChange = useCallback((evt) => {
         setCurrentLanguage(evt.lang);
@@ -47,14 +46,14 @@ function FrontEnd(props) {
         classNames.push('ssr');
     }
     return (
-        <TextContext.Provider value={textOptions}>
+        <Env.Provider value={env}>
             <div className={classNames.join(' ')}>
                 {renderNavigation()}
                 <div className="page-container">
                     {renderCurrentPage()}
                 </div>
             </div>
-        </TextContext.Provider>
+        </Env.Provider>
     );
 
     function renderNavigation() {

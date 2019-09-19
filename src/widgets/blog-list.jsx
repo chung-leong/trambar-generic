@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Relaks, { useProgress, useListener } from 'relaks';
-import { useRichText, useDateText } from 'trambar-www';
+import { useRichText, useEnv } from 'trambar-www';
 
 import { LoadingAnimation } from '../widgets/loading-animation.jsx';
 
@@ -8,8 +8,9 @@ async function BlogList(props) {
     const { db, route, type } = props;
     const { identifier, slug } = route.params;
     const [ show ] = useProgress();
+    const env = useEnv();
     const rt = useRichText();
-    const dt = useDateText();
+    const minimum = 20;
     const maximum = 1000;
 
     const handleScroll = useListener((evt) => {
@@ -33,6 +34,10 @@ async function BlogList(props) {
     const tag = await fetchTag();
     const posts = await fetchPosts();
     render();
+
+    if (posts.length < minimum) {
+        posts.more();
+    }
 
     async function fetchCategory() {
         if (type === 'category') {
@@ -86,12 +91,13 @@ async function BlogList(props) {
     function renderPost(post, i) {
         const { slug, title, excerpt, date } = post;
         const url = route.find('blog-post', { identifier, slug });
+        const dateStr = date.toLocaleDateString(env.language);
         return (
             <div key={i}>
                 <h4>
                     <a href={url}>{rt(title)}</a>
                 </h4>
-                <div className="date">{dt(date)}</div>
+                <div className="date">{dateStr}</div>
                 {rt(excerpt)}
             </div>
         );
