@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import Relaks, { useProgress } from 'relaks';
 import { useRichText } from 'trambar-www';
 
-import './wiki-navigation.scss';
-
 async function WikiNavigation(props) {
     const { db, route } = props;
     const { identifier, slug } = route.params;

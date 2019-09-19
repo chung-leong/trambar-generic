@@ -3,8 +3,6 @@ import React from 'react';
 import { SearchResults } from '../widgets/search-results.jsx';
 import { SearchNavigation } from '../widgets/search-navigation.jsx';
 
-import './search-page.scss';
-
 function SearchPage(props) {
     const { route } = props;
     return (

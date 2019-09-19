@@ -2,8 +2,6 @@ import React from 'react';
 
 import { ExcelContents } from '../widgets/excel-contents.jsx';
 
-import './excel-page.scss';
-
 function ExcelPage(props) {
     const { route } = props;
     return (

@@ -1,9 +1,0 @@
-@import '../global.scss';
-
-.search-navigation {
-    @extend .navigation;
-
-    .search {
-        padding-inline-start: 2em;
-    }
-}

@@ -3,8 +3,6 @@ import React from 'react';
 import { BlogList } from '../widgets/blog-list.jsx';
 import { BlogNavigation } from '../widgets/blog-navigation.jsx';
 
-import './blog-tag-page.scss';
-
 function BlogTagPage(props) {
     const { route } = props;
     return (

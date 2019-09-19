@@ -4,8 +4,6 @@ import { useLanguageFilter } from 'trambar-www';
 
 import { SearchBox } from './search-box.jsx';
 
-import './top-navigation.scss';
-
 async function TopNavigation(props) {
     const { db, route, onLangChange } = props;
     const [ show ] = useProgress();

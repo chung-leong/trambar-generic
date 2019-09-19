@@ -5,8 +5,6 @@ import { useRichText } from 'trambar-www';
 import { BlogContents } from '../widgets/blog-contents.jsx';
 import { BlogNavigation } from '../widgets/blog-navigation.jsx';
 
-import './blog-post-page.scss';
-
 function BlogPostPage(props) {
     const { route } = props;
     return (

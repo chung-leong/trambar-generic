@@ -4,8 +4,6 @@ import { useRichText } from 'trambar-www';
 
 import { Overlay } from './overlay.jsx';
 
-import './image-dialog-box.scss';
-
 function ImageDialogBox(props) {
     const { database, image, onClose } = props;
     const rt = useRichText({

@@ -5,8 +5,6 @@ import { useRichText, useLanguageFilter } from 'trambar-www';
 import { LoadingAnimation } from '../widgets/loading-animation.jsx';
 import { ImageDialogBox } from '../widgets/image-dialog-box.jsx';
 
-import './wiki-contents.scss';
-
 async function WikiContents(props) {
     const { db, route } = props;
     const { identifier, slug } = route.params;

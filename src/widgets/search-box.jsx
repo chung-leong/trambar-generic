@@ -1,7 +1,5 @@
 import React, { useState, useRef, useCallback } from 'react';
 
-import './search-box.scss';
-
 function SearchBox(props) {
     const { route } = props;
     const [ search, setSearch ] = useState(() => {

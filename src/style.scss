@@ -1,0 +1,389 @@
+$nav-fg-color: #ffffff;
+$nav-bg-color: #000000;
+$nav-hover-color: #6666ff;
+
+$link-fg-color: #000000;
+$link-hover-color: #0000cc;
+
+$side-box-fg-color: $nav-bg-color;
+
+$dlg-bg-color: $nav-bg-color;
+$dlg-fg-color: $nav-fg-color;
+$dlg-shadow-color: #000000;
+
+* {
+    box-sizing: border-box;
+}
+
+BODY {
+    font-family: sans-serif;
+    margin: 0;
+    overflow-y: scroll;
+}
+
+A {
+    &:link, &:visited {
+        color: $link-fg-color;
+
+        &:hover {
+            color: $link-hover-color;
+        }
+    }
+}
+
+.page {
+    display: flex;
+
+    .contents {
+        flex: 1 1 auto;
+        overflow: hidden;
+    }
+
+    .side-bar {
+        flex: 0 0 20em;
+    }
+}
+
+.navigation {
+    padding: 1em 0 1em 1em;
+
+    .box {
+        color: $side-box-fg-color;
+        padding: 0.5em 0.5em 0.5em 0.5em;
+        border: 3px solid $side-box-fg-color;
+        transition: opacity 0.3s;
+        margin-bottom: 1em;
+
+        H4 {
+            margin: 0;
+        }
+
+        A {
+            &:link, &:visited {
+                text-decoration: none;
+            }
+        }
+
+        &.hidden {
+            opacity: 0;
+            transition: opacity 0s;
+        }
+    }
+}
+
+.front-end {
+    .page-container {
+        margin: 0 0 1em 1em;
+    }
+}
+
+.blog-category-page {
+    @extend .page;
+}
+
+.blog-main-page {
+    @extend .page;
+}
+
+.blog-post-page {
+    @extend .page;
+}
+
+.blog-tag-page {
+    @extend .page;
+}
+
+.excel-page {
+    @extend .page;
+}
+
+.home-page {
+    @extend .page;
+}
+
+.search-page {
+    @extend .page;
+}
+
+.wiki-page {
+    @extend .page;
+}
+
+.blog-contents {
+}
+
+.blog-list {
+    .date {
+        margin-top: -0.8em;
+    }
+}
+
+.blog-navigation {
+    @extend .navigation;
+
+    .categories {
+        padding-inline-start: 2em;
+    }
+
+    .tags {
+        padding-top: 0.8em;
+        padding-left: 1em;
+
+        SPAN {
+            &::after {
+                content: " ";
+            }
+        }
+    }
+}
+
+.excel-contents {
+    .table-container {
+        box-sizing: content-box;
+        border: 1px solid black;
+        overflow-x: auto;
+        overflow-y: auto;
+        max-width: calc(100% - 0.5em - 2px);
+        max-height: 50vh;
+        width: max-content;
+        margin-left: 0.5em;
+
+        TABLE {
+            width: max-content;
+            border-collapse: collapse;
+
+            TD, TH {
+                border: 1px solid black;
+                padding: 2px 2px 2px 2px;
+                text-align: left;
+                max-width: 80vw;
+                vertical-align: top;
+            }
+
+            TR:first-child {
+                TH {
+                    border-top: 0;
+                }
+            }
+
+            TR:last-child {
+                TD {
+                    border-bottom: 0;
+                }
+            }
+
+            TR {
+                TD, TH {
+                    &:first-child {
+                        border-left: 0;
+                    }
+                }
+                TD, TH {
+                    &:last-child {
+                        border-right: 0;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.image-dialog-box {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    background-color: $dlg-bg-color;
+    color: $dlg-fg-color;
+    padding: 1em 1em 1em 1em;
+    box-shadow: 5px 5px 4px $dlg-shadow-color;
+
+    .buttons {
+        flex: 0 0 auto;
+        padding-top: 0.8em;
+
+        .left {
+            float: left;
+        }
+
+        .right {
+            float: right;
+        }
+    }
+}
+
+.loading-animation {
+    text-align: center;
+    margin-top: 2em;
+
+    .blocks {
+        display: inline-block;
+        position: relative;
+        width: 64px;
+        height: 64px;
+        opacity: 0.1;
+
+        div {
+            display: inline-block;
+            position: absolute;
+            left: 6px;
+            width: 13px;
+            background: $nav-bg-color;
+            animation: loading-animation 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+
+            &:nth-child(1) {
+                left: 6px;
+                animation-delay: -0.24s;
+            }
+
+            &:nth-child(2) {
+                left: 26px;
+                animation-delay: -0.12s;
+            }
+
+            &:nth-child(3) {
+              left: 45px;
+              animation-delay: 0;
+            }
+        }
+    }
+
+    @keyframes loading-animation {
+        0% {
+            top: 6px;
+            height: 51px;
+        }
+        50%, 100% {
+            top: 19px;
+            height: 26px;
+        }
+    }
+}
+
+.overlay {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    overflow: hidden;
+    z-index: 5000;
+    overscroll-behavior: contain;
+    -ms-scroll-chaining: none;
+
+    .background {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background-color: #000;
+        transition: opacity 0.5s;
+    }
+
+    .foreground {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 90%;
+        transition: opacity 0.25s, top 0.25s;
+    }
+
+    &.show {
+        .background {
+            opacity: 0.75;
+        }
+        .foreground {
+            opacity: 1;
+        }
+    }
+
+    &.hide {
+        .background {
+            opacity: 0;
+        }
+        .foreground {
+            top: -30px;
+            opacity: 0;
+        }
+    }
+}
+
+.search-box {
+    float: right;
+
+    INPUT {
+        border: 0;
+        padding: 3px 3px 3px 3px;
+        margin-right: 8px;
+        width: 20em;
+        vertical-align: text-bottom;
+    }
+
+    .magnifying-class {
+        display: inline-block;
+        transform: rotate(45deg);
+        font-weight: bold;
+        font-size: 1.2em;
+    }
+}
+
+.search-navigation {
+    @extend .navigation;
+
+    .search {
+        padding-inline-start: 2em;
+    }
+}
+
+.top-navigation {
+    color: $nav-fg-color;
+    background-color: $nav-bg-color;
+    padding: 0.25em 0.5em 0.25em 0.5em;
+
+    .title {
+        padding: 0.25em 0.25em 0.25em 0.25em;
+        margin: 0;
+    }
+
+    .languages {
+        float: right;
+
+        A {
+            text-transform: uppercase;
+        }
+    }
+
+    .button {
+        display: inline-block;
+        padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+
+    A {
+        &:link, &:visited {
+            color: $nav-fg-color;
+            text-decoration: none;
+
+            &:hover {
+                color: $nav-hover-color;
+            }
+        }
+    }
+}
+
+.wiki-contents {
+    IMG {
+        vertical-align: middle;
+    }
+}
+
+.wiki-navigation {
+    @extend .navigation;
+
+    .pages {
+        padding-inline-start: 2em;
+    }
+}

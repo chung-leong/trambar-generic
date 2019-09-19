@@ -4,8 +4,6 @@ import { useRichText } from 'trambar-www';
 
 import { LoadingAnimation } from '../widgets/loading-animation.jsx';
 
-import './blog-contents.scss';
-
 async function BlogContents(props) {
     const { db, route } = props;
     const { identifier, slug } = route.params;

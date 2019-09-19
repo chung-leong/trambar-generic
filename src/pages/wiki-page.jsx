@@ -3,8 +3,6 @@ import React from 'react';
 import { WikiContents } from '../widgets/wiki-contents.jsx';
 import { WikiNavigation } from '../widgets/wiki-navigation.jsx';
 
-import './wiki-page.scss';
-
 function WikiPage(props) {
     const { route } = props;
     return (

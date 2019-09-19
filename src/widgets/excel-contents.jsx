@@ -4,8 +4,6 @@ import { useRichText, useLanguageFilter } from 'trambar-www';
 
 import { LoadingAnimation } from '../widgets/loading-animation.jsx';
 
-import './excel-contents.scss';
-
 async function ExcelContents(props) {
     const { db, route } = props;
     const { identifier } = route.params;

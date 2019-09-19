@@ -1,9 +1,0 @@
-@import '../global.scss';
-
-.wiki-navigation {
-    @extend .navigation;
-
-    .pages {
-        padding-inline-start: 2em;
-    }
-}

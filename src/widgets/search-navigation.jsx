@@ -1,7 +1,5 @@
 import React from 'react';
 
-import './search-navigation.scss';
-
 function SearchNavigation(props) {
     const { route } = props;
     const { history } = route;

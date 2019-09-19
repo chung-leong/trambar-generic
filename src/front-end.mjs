@@ -6,7 +6,7 @@ import { Route } from './routing.mjs';
 
 import { TopNavigation } from './widgets/top-navigation.jsx';
 
-import './front-end.scss';
+import './style.scss';
 
 function FrontEnd(props) {
     const { dataSource, routeManager, ssr, lang } = props;

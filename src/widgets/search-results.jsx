@@ -4,8 +4,6 @@ import { useRichText, useDateText } from 'trambar-www';
 
 import { LoadingAnimation } from '../widgets/loading-animation.jsx';
 
-import './search-results.scss';
-
 async function SearchResults(props) {
     const { db, route } = props;
     const { identifier, search } = route.params;
