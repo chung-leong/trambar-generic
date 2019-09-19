@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import Relaks, { useProgress, useListener } from 'relaks';
-import { useRichText, useLanguageFilter } from 'trambar-www';
+import Relaks, { useProgress, useListener, useRichText, useLanguageFilter } from 'trambar-www';
 
 import { LoadingAnimation } from '../widgets/loading-animation.jsx';
 import { ImageDialogBox } from '../widgets/image-dialog-box.jsx';

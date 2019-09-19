@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import Relaks, { useProgress } from 'relaks';
-import { useRichText } from 'trambar-www';
+import Relaks, { useProgress, useRichText } from 'trambar-www';
 
 async function BlogNavigation(props) {
     const { db, route, type } = props;

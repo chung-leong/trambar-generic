@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Relaks, { useProgress, useListener } from 'relaks';
-import { useRichText, useEnv } from 'trambar-www';
+import Relaks, { useProgress, useListener, useRichText, useEnv } from 'trambar-www';
 
 import { LoadingAnimation } from '../widgets/loading-animation.jsx';
 

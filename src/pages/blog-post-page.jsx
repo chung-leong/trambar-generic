@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import Relaks, { useProgress } from 'relaks';
-import { useRichText } from 'trambar-www';
+import { useProgress, useRichText } from 'trambar-www';
 
 import { BlogContents } from '../widgets/blog-contents.jsx';
 import { BlogNavigation } from '../widgets/blog-navigation.jsx';

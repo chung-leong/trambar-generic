@@ -1,6 +1,6 @@
 import { createElement } from 'react';
 import { renderToString, renderToStaticMarkup } from 'react-dom/server';
-import { harvest } from 'relaks-harvest';
+import { harvest } from 'trambar-www';
 import { start } from './services.mjs';
 import { FrontEnd } from './front-end.mjs';
 import { HTML } from './html.mjs';

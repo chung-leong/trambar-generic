@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import Relaks, { useListener } from 'relaks';
-import { useRichText, useEnv } from 'trambar-www';
+import Relaks, { useRichText, useEnv } from 'trambar-www';
 
 import { Overlay } from './overlay.jsx';
 

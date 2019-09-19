@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import Relaks, { useProgress } from 'relaks';
-import { useRichText, useLanguageFilter } from 'trambar-www';
+import Relaks, { useProgress, useRichText, useLanguageFilter } from 'trambar-www';
 
 import { LoadingAnimation } from '../widgets/loading-animation.jsx';
 

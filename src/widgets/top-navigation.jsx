@@ -1,6 +1,5 @@
 import React, { useCallback } from 'react';
-import Relaks, { useProgress } from 'relaks';
-import { useLanguageFilter } from 'trambar-www';
+import Relaks, { useProgress, useLanguageFilter } from 'trambar-www';
 
 import { SearchBox } from './search-box.jsx';
 

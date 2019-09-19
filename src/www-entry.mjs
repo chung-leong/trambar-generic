@@ -1,7 +1,6 @@
 import { createElement } from 'react';
 import { hydrate, render } from 'react-dom';
-import { harvest } from 'relaks-harvest';
-import { plant } from 'relaks';
+import { harvest, plant } from 'trambar-www';
 import { start } from './services.mjs';
 import { FrontEnd } from './front-end.mjs';
 
@@ -19,7 +18,7 @@ async function initialize(evt) {
 /**
  * Render page contents in the same manner as on the server. Use relaks-harvest
  * to collect final contents of asynchronous components. "plant" contents into
- * Relaks so asynchrous components would yield their contents immediately. 
+ * Relaks so asynchrous components would yield their contents immediately.
  *
  * @param  {HTMLElement} container
  * @param  {Object} services

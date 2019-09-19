@@ -1,6 +1,5 @@
 import React from 'react';
-import Relaks, { useProgress } from 'relaks';
-import { useLanguageFilter } from 'trambar-www';
+import Relaks, { useProgress, useLanguageFilter } from 'trambar-www';
 
 async function HTML(props) {
     const { dataSource } = props;
