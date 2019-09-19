@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import Relaks, { useProgress } from 'relaks';
+import React, { useState, useEffect } from 'react';
+import Relaks, { useProgress, useListener } from 'relaks';
 import { useRichText, useDateText } from 'trambar-www';
 
 import { LoadingAnimation } from '../widgets/loading-animation.jsx';
@@ -12,6 +12,23 @@ async function BlogList(props) {
     const [ show ] = useProgress();
     const rt = useRichText();
     const dt = useDateText();
+    const maximum = 1000;
+
+    const handleScroll = useListener((evt) => {
+        const { scrollTop, scrollHeight } = document.body.parentNode;
+        if (scrollTop > scrollHeight * 0.5) {
+            if (posts && posts.length < maximum) {
+                posts.more();
+            }
+        }
+    });
+
+    useEffect(() => {
+        document.addEventListener('scroll', handleScroll);
+        return () => {
+            document.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
 
     render();
     const category = await fetchCategory();
