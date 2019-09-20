@@ -2,12 +2,7 @@ import React, { useState, useRef, useCallback } from 'react';
 
 function SearchBox(props) {
     const { route } = props;
-    const [ search, setSearch ] = useState(() => {
-        if (route.name === 'search') {
-            return route.params.search;
-        }
-        return '';
-    });
+    const [ search, setSearch ] = useState(route.params.search || '');
     const link = useRef();
 
     const handleSearchChange = useCallback((evt) => {
@@ -20,7 +15,8 @@ function SearchBox(props) {
         }
     });
 
-    const url = route.find('search', { search });
+    const trimmed = search.trim();
+    const url = (trimmed) ? route.find('search', { search: trimmed }) : undefined;
     return (
         <div className="search-box">
             <input value={search} onChange={handleSearchChange} onKeyDown={handleKeyDown}/>

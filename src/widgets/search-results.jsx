@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import Relaks, { useProgress, useRichText } from 'trambar-www';
+import React, { useState, useEffect } from 'react';
+import Relaks, { useProgress, useListener, useRichText } from 'trambar-www';
 
 import { LoadingAnimation } from '../widgets/loading-animation.jsx';
 
@@ -8,28 +8,104 @@ async function SearchResults(props) {
     const { identifier, search } = route.params;
     const [ show ] = useProgress();
     const rt = useRichText();
+    const minimum = 20;
+    const maximum = 1000;
+
+    const handleScroll = useListener((evt) => {
+        const { scrollTop, scrollHeight, clientHeight } = document.body.parentNode;
+        if (scrollTop + clientHeight > scrollHeight * 0.5) {
+            if (blogResults && blogResults.length < maximum) {
+                blogResults.more();
+            }
+        }
+    });
+
+    useEffect(() => {
+        document.addEventListener('scroll', handleScroll);
+        return () => {
+            document.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
 
     let hasResults = false, searchComplete = false;
     render();
-    const wikis = await db.fetchWikiPages(undefined, { search });
+    const wikis = await searchWiki();
     if (wikis.length > 0) {
         hasResults = true;
     }
     render();
-    const files = await db.fetchExcelFiles({ search });
+    const files = await searchExcelFiles();
     if (files.length > 0) {
         hasResults = true;
     }
     render();
-    const posts = [];
-    /*
-    const posts = await db.fetchWPPostsSearch(search);
-    if (posts.length > 0) {
+    const blogResults = await searchBlogs();
+    if (blogResults.length > 0) {
         hasResults = true;
     }
-    */
     searchComplete = true;
     render();
+
+    if (blogResults.length < minimum) {
+        blogResults.more();
+    }
+
+    async function searchWiki() {
+        if (!search) {
+            return [];
+        }
+        return db.fetchWikiPages(undefined, { search });
+    }
+
+    async function searchExcelFiles() {
+        if (!search) {
+            return [];
+        }
+        return db.fetchExcelFiles({ search });
+    }
+
+    async function searchBlogs() {
+        if (!search) {
+            const empty = [];
+            empty.more = () => {};
+            return empty;
+        }
+        const resultSets = {};
+        const sites = await db.fetchWPSites();
+        for (let site of sites) {
+            const { identifier } = site;
+            const posts = await db.fetchWPPosts(identifier, { search });
+            resultSets[identifier] = posts;
+        }
+
+        // interleave the results from different blogs
+        const list = [];
+        for (let si = 0, more = true; more; si += 10) {
+            more = false;
+            for (let site of sites) {
+                const { identifier } = site;
+                const posts = resultSets[identifier];
+                let ei = si + 10;
+                if (ei < posts.length) {
+                    more = true;
+                } else {
+                    ei = posts.length;
+                }
+                for (let i = si; i < ei; i++) {
+                    list.push({ identifier, post: posts[i] });
+                }
+            }
+        }
+        // fetch more from each blog
+        list.more = () => {
+            for (let site of sites) {
+                const { identifier } = site;
+                const posts = resultSets[identifier];
+                posts.more();
+            }
+        };
+        return list;
+    }
 
     function render() {
         show(
@@ -48,7 +124,7 @@ async function SearchResults(props) {
                     {renderTitle()}
                     {renderWikis()}
                     {renderExcelFiles()}
-                    {renderPosts()}
+                    {renderBlogResults()}
                 </React.Fragment>
             );
         }
@@ -100,14 +176,15 @@ async function SearchResults(props) {
         );
     }
 
-    function renderPosts() {
-        if (!posts) {
+    function renderBlogResults() {
+        if (!blogResults) {
             return;
         }
-        return posts.map(renderPost);
+        return blogResults.map(renderBlogResult);
     }
 
-    function renderPost(post, i) {
+    function renderBlogResult(result, i) {
+        const { identifier, post } = result;
         const { slug, title, excerpt, date } = post;
         const url = route.find('blog-post', { identifier, slug });
         return (

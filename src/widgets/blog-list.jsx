@@ -13,8 +13,8 @@ async function BlogList(props) {
     const maximum = 1000;
 
     const handleScroll = useListener((evt) => {
-        const { scrollTop, scrollHeight } = document.body.parentNode;
-        if (scrollTop > scrollHeight * 0.5) {
+        const { scrollTop, scrollHeight, clientHeight } = document.body.parentNode;
+        if (scrollTop + clientHeight > scrollHeight * 0.5) {
             if (posts && posts.length < maximum) {
                 posts.more();
             }

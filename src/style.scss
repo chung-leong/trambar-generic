@@ -332,6 +332,14 @@ A {
         vertical-align: text-bottom;
     }
 
+    A {
+        user-select: none;
+        opacity: 0.5;
+        &:link, &:visited {
+            opacity: 1;
+        }
+    }
+
     .magnifying-class {
         display: inline-block;
         transform: rotate(45deg);
