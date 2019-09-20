@@ -35,7 +35,7 @@ module.exports = {
             });
         });
         app.get('/*', function(req, res, next) {
-            var path = req.path;
+            var path = req.url;
             var lang = getPreferredLanguage(req);
 
             server.middleware.waitUntilValid(function() {
