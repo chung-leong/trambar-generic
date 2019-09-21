@@ -118,7 +118,7 @@ function getPageTitle(page) {
 }
 
 function getFileTitle(file) {
-    return file.title || file.name;
+    return file.title || file.identifier;
 }
 
 function getLanguages(...lists) {
