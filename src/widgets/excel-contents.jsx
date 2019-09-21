@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import Relaks, { useProgress, useRichText, useLanguageFilter } from 'trambar-www';
+import Relaks, { useProgress, useListener, useRichText, useLanguageFilter } from 'trambar-www';
 
 import { LoadingAnimation } from '../widgets/loading-animation.jsx';
+import { ImageDialogBox } from '../widgets/image-dialog-box.jsx';
 
 async function ExcelContents(props) {
     const { db, route } = props;
@@ -10,7 +11,21 @@ async function ExcelContents(props) {
     const rt = useRichText({
         imageWidth: 120,
     });
+    const [ selectedImage, setSelectedImage ] = useState(null);
     const f = useLanguageFilter();
+
+    const handleContentsClick = useListener((evt) => {
+        const { tagName, src } = evt.target;
+        if (tagName === 'IMG') {
+            const image = file.image(src);
+            if (image) {
+                setSelectedImage(image);
+            }
+        }
+    });
+    const handleDialogClose = useListener((evt) => {
+        setSelectedImage(null);
+    });
 
     render();
     const file = f(await db.fetchExcelFile(identifier));
@@ -18,8 +33,9 @@ async function ExcelContents(props) {
 
     function render() {
         show(
-            <div className="excel-contents">
+            <div className="excel-contents" onClick={handleContentsClick}>
                 {renderContents()}
+                {renderDialogBox()}
             </div>
         );
     }
@@ -88,6 +104,15 @@ async function ExcelContents(props) {
                 {rt(cell)}
             </td>
         );
+    }
+
+    function renderDialogBox() {
+        const props = {
+            show: !!selectedImage,
+            image: selectedImage,
+            onClose: handleDialogClose,
+        };
+        return <ImageDialogBox {...props} />;
     }
 }
 

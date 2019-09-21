@@ -47,10 +47,8 @@ async function WikiContents(props) {
             show(<LoadingAnimation />);
         } else {
             show(
-                <div className="wiki-contents">
-                    <div className="contents" onClick={handleContentsClick}>
-                        {rt(page)}
-                    </div>
+                <div className="wiki-contents" onClick={handleContentsClick}>
+                    {rt(page)}
                     {renderDialogBox()}
                 </div>
             );

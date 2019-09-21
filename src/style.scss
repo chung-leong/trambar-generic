@@ -213,6 +213,10 @@ A {
                 }
             }
         }
+
+        IMG {
+            cursor: pointer;
+        }
     }
 }
 
@@ -394,6 +398,7 @@ A {
 .wiki-contents {
     IMG {
         vertical-align: middle;
+        cursor: pointer;
     }
 }
 
