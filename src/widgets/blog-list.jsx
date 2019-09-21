@@ -97,7 +97,9 @@ async function BlogList(props) {
                     <a href={url}>{rt(title)}</a>
                 </h4>
                 <div className="date">{dateStr}</div>
-                {rt(excerpt)}
+                <div className="excerpt">
+                    {rt(excerpt)}
+                </div>
             </div>
         );
     }

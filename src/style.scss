@@ -138,11 +138,22 @@ A {
 }
 
 .blog-contents {
+    .date {
+        margin-top: -0.8em;
+    }
+
+    .article {
+        margin-top: 1em;
+    }
 }
 
 .blog-list {
     .date {
         margin-top: -0.8em;
+    }
+
+    .excerpt {
+        margin-top: 1em;
     }
 }
 
