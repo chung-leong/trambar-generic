@@ -27,6 +27,14 @@ async function TopNavigation(props) {
     const sites = await db.fetchWPSites();
     render();
 
+    preloadPosts();
+
+    async function preloadPosts() {
+        for (let site of sites) {
+            await db.fetchWPPosts(site.identifier);
+        }
+    }
+
     function render() {
         show(
             <div className="top-navigation">

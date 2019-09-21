@@ -13,9 +13,9 @@ async function BlogContents(props) {
                 let linkSlug;
                 if (props.href.startsWith(site.url)) {
                     const path = props.href.substr(site.url.length);
-                    const m = /^\/([\w\-]+)\/([\w\-]+)$/.exec(path);
+                    const m = /^\/([\w\-]+)\/?$/.exec(path);
                     if (m) {
-                        linkSlug = m[2];
+                        linkSlug = m[1];
                     }
                 }
                 if (linkSlug) {
