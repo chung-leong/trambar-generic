@@ -14,17 +14,13 @@ async function WikiContents(props) {
         richTextAdjust: (type, props, children) => {
             if (type === 'a') {
                 if (/^https?:/.test(props.href)) {
-                    const target = '_blank';
-                    props = { ...props, target };
+                    props = { ...props, target: '_blank' };
                 } else if (/^[\w\-]+$/.test(props.href)) {
-                    const href = route.find('wiki', {
-                        slug: props.href,
-                        identifier: route.params.identifier,
-                    });
+                    const href = route.find('wiki', { identifier, slug: props.href });
                     props = { ...props, href };
                 }
+                return { type, props, children };
             }
-            return { type, props, children };
         }
     });
     const f = useLanguageFilter();

@@ -39,6 +39,10 @@ class Database {
         return this.dataSource.fetchWPPosts(identifier, criteria);
     }
 
+    async fetchWPSite(identifier) {
+        return this.dataSource.fetchWPSite(identifier);
+    }
+
     async fetchWPSites() {
         return this.dataSource.fetchWPSites();
     }
