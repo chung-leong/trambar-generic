@@ -5,6 +5,7 @@ class Route {
         this.params = routeManager.params;
         this.history = routeManager.history;
         this.url = routeManager.url;
+        this.time = routeManager.time;
     }
 
     change(url, options) {

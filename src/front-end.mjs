@@ -17,15 +17,12 @@ function FrontEnd(props) {
     const route = useMemo(() => {
         return new Route(routeManager);
     }, [ routeManager, routeChanged ]);
-    const [ currentLanguage, setCurrentLanguage ] = useState(lang);
-    const env = useEnvMonitor({
-        imageBaseURL: dataSource.options.baseURL,
-        language: currentLanguage,
-        ssr,
-    });
+    const [ language, setLanguage ] = useState(lang);
+    const imageBaseURL = dataSource.options.baseURL
+    const env = useEnvMonitor({ ssr, language, imageBaseURL });
 
     const handleLangChange = useCallback((evt) => {
-        setCurrentLanguage(evt.lang);
+        setLanguage(evt.lang);
     });
 
     useEffect(() => {
@@ -39,6 +36,14 @@ function FrontEnd(props) {
     useEffect(() => {
         dataSource.log();
     }, []);
+    useEffect(() => {
+        // reset scroll position unless route is old
+        // (i.e. we've reached via back or forward button)
+        const age = new Date - new Date(route.time);
+        if (age < 200) {
+            document.documentElement.scrollTop = 0;
+        }
+    }, [ route ]);
 
     const classNames = [ 'front-end' ];
     if (ssr) {
