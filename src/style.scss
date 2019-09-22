@@ -375,6 +375,7 @@ A {
     color: $nav-fg-color;
     background-color: $nav-bg-color;
     padding: 0.25em 0.5em 0.25em 0.5em;
+    overflow: hidden;
 
     .title {
         padding: 0.25em 0.25em 0.25em 0.25em;
