@@ -7,7 +7,7 @@ import { HTML } from './html.mjs';
 
 async function render(options) {
     const services = await start(options);
-    const attrs = { ssr: options.ssrTarget, lang: options.preferredLanguage };
+    const attrs = { ssr: options.ssrTarget };
     const contents = await renderFrontEnd(services, attrs);
     const script = packageOptions(options);
     const htmlTemplate = await renderTemplate(services, attrs);

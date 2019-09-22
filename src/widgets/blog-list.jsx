@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Relaks, { useProgress, useListener, useRichText, useEnv } from 'trambar-www';
+import Relaks, { useProgress, useListener, useLocalized, useRichText } from 'trambar-www';
 
 import { LoadingAnimation } from '../widgets/loading-animation.jsx';
 
@@ -7,7 +7,7 @@ async function BlogList(props) {
     const { db, route, type } = props;
     const { identifier, slug } = route.params;
     const [ show ] = useProgress();
-    const env = useEnv();
+    const t = useLocalized();
     const rt = useRichText();
     const minimum = 20;
     const maximum = 1000;
@@ -74,7 +74,7 @@ async function BlogList(props) {
             return <LoadingAnimation />;
         } else {
             if (category) {
-                return <h1>Category: {rt(category.name)}</h1>;
+                return <h1>{t('Category')}: {rt(category.name)}</h1>;
             } else if (tag) {
                 return <h1>Tag: {rt(tag.name)}</h1>;
             }
@@ -90,13 +90,12 @@ async function BlogList(props) {
     function renderPost(post, i) {
         const { slug, title, excerpt, date } = post;
         const url = route.find('blog-post', { identifier, slug });
-        const dateStr = date.toLocaleDateString(env.language);
         return (
             <div key={i}>
                 <h4>
                     <a href={url}>{rt(title)}</a>
                 </h4>
-                <div className="date">{dateStr}</div>
+                <div className="date">{t(date)}</div>
                 <div className="excerpt">
                     {rt(excerpt)}
                 </div>

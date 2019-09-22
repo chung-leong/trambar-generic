@@ -11,7 +11,7 @@ async function WikiContents(props) {
     const [ selectedImage, setSelectedImage ] = useState(null);
     const rt = useRichText({
         imageHeight: 24,
-        richTextAdjust: (type, props, children) => {
+        adjustFunc: (type, props, children) => {
             if (type === 'a') {
                 if (/^https?:/.test(props.href)) {
                     props = { ...props, target: '_blank' };

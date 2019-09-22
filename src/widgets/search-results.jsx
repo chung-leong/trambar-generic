@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Relaks, { useProgress, useListener, useRichText } from 'trambar-www';
+import Relaks, { useProgress, useListener, useLocalized, useRichText } from 'trambar-www';
 
 import { LoadingAnimation } from '../widgets/loading-animation.jsx';
 
@@ -7,6 +7,7 @@ async function SearchResults(props) {
     const { db, route } = props;
     const { identifier, search } = route.params;
     const [ show ] = useProgress();
+    const t = useLocalized();
     const rt = useRichText();
     const minimum = 20;
     const maximum = 1000;
@@ -131,11 +132,8 @@ async function SearchResults(props) {
     }
 
     function renderTitle() {
-        if (hasResults) {
-            return <h2>Search results</h2>;
-        } else {
-            return <h2>No results</h2>;
-        }
+        const heading = t(hasResults ? 'Search results' : 'No results');
+        return <h2>{heading}</h2>;
     }
 
     function renderWikis() {

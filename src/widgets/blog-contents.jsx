@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Relaks, { useProgress, useRichText, useEnv } from 'trambar-www';
+import Relaks, { useProgress, useLocalized, useRichText } from 'trambar-www';
 
 import { LoadingAnimation } from '../widgets/loading-animation.jsx';
 
@@ -7,9 +7,9 @@ async function BlogContents(props) {
     const { db, route } = props;
     const { identifier, slug } = route.params;
     const [ show ] = useProgress();
-    const env = useEnv();
+    const t = useLocalized();
     const rt = useRichText({
-        richTextAdjust: (type, props, children) => {
+        adjustFunc: (type, props, children) => {
             if (type === 'a' && props.href) {
                 let linkSlug;
                 if (props.href.startsWith(site.url)) {
@@ -51,12 +51,11 @@ async function BlogContents(props) {
             return <LoadingAnimation />;
         } else {
             const { date } = post;
-            const dateStr = date.toLocaleDateString(env.language);
             const authorName = (author) ? rt(author.name) : '';
             return (
                 <React.Fragment>
                     <h2>{rt(post.title)}</h2>
-                    <div className="date">{dateStr} - {authorName}</div>
+                    <div className="date">{t(date)} - {authorName}</div>
                     <div className="article">
                         {rt(post.content)}
                     </div>

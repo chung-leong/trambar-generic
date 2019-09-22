@@ -1,9 +1,11 @@
 import React from 'react';
+import { useLocalized } from 'trambar-www';
 
 function SearchNavigation(props) {
     const { route } = props;
     const { history } = route;
     const searches = [];
+    const t = useLocalized();
 
     const exists = {};
     if (route.name === 'search') {
@@ -29,9 +31,10 @@ function SearchNavigation(props) {
         if (count === 0) {
             return <div className="box hidden" />;
         } else {
+            const heading = t(`Previous ${count === 1 ? 'search' : 'searches'}`);
             return (
                 <div className="box">
-                    <h4>Previous {(count === 1) ? 'search' : 'searches'}</h4>
+                    <h4>{heading}</h4>
                     <ul className="categories">
                         {searches.map(renderSearch)}
                     </ul>

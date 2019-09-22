@@ -1,5 +1,5 @@
-import React, { useState, useMemo, useEffect, useCallback } from 'react';
-import { useEventTime, useEnvMonitor, Env } from 'trambar-www';
+import React, { useMemo, useEffect } from 'react';
+import { useListener, useEventTime, useEnvMonitor, Env } from 'trambar-www';
 import { Database } from './database.mjs';
 import { Route } from './routing.mjs';
 
@@ -8,31 +8,37 @@ import { TopNavigation } from './widgets/top-navigation.jsx';
 import './style.scss';
 
 function FrontEnd(props) {
-    const { dataSource, routeManager, ssr, lang } = props;
+    const { dataSource, routeManager, localeManager, ssr } = props;
     const [ dataChanged, setDataChanged ] = useEventTime();
     const [ routeChanged, setRouteChanged ] = useEventTime();
+    const [ localeChanged, setLocaleChanged ] = useEventTime();
     const db = useMemo(() => {
         return new Database(dataSource);
     }, [ dataSource, dataChanged ]);
     const route = useMemo(() => {
         return new Route(routeManager);
     }, [ routeManager, routeChanged ]);
-    const [ language, setLanguage ] = useState(lang);
-    const imageBaseURL = dataSource.options.baseURL
-    const env = useEnvMonitor({ ssr, language, imageBaseURL });
+    const env = useEnvMonitor({
+        language: localeManager.language,
+        localizeFunc: localeManager.localize,
+        imageBaseURL: dataSource.options.baseURL,
+        ssr,
+    });
 
-    const handleLangChange = useCallback((evt) => {
-        setLanguage(evt.lang);
+    const handleLangChange = useListener((evt) => {
+        localeManager.set(evt.lang);
     });
 
     useEffect(() => {
         dataSource.addEventListener('change', setDataChanged);
         routeManager.addEventListener('change', setRouteChanged);
+        localeManager.addEventListener('change', setLocaleChanged);
         return () => {
             dataSource.removeEventListener('change', setDataChanged);
             routeManager.removeEventListener('change', setRouteChanged);
+            localeManager.removeEventListener('change', setLocaleChanged);
         };
-    }, [ dataSource, routeManager ]);
+    }, [ dataSource, routeManager, localeManager ]);
     useEffect(() => {
         dataSource.log();
     }, []);

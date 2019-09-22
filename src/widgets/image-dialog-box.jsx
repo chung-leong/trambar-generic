@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import Relaks, { useRichText, useEnv } from 'trambar-www';
+import Relaks, { useLocalized, useRichText, useEnv } from 'trambar-www';
 
 import { Overlay } from './overlay.jsx';
 
 function ImageDialogBox(props) {
     const { database, image, onClose } = props;
     const env = useEnv();
+    const t = useLocalized();
     const rt = useRichText({
         imageMaxWidth: env.viewportWidth - 100,
         imageMaxHeight: env.viewportHeight - 150,
@@ -30,7 +31,7 @@ function ImageDialogBox(props) {
                 <div className="left">
                 </div>
                 <div className="right">
-                    <button onClick={onClose}>Close</button>
+                    <button onClick={onClose}>{t('Close')}</button>
                 </div>
             </div>
         );

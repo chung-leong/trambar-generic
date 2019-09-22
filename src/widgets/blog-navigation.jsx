@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import Relaks, { useProgress, useRichText } from 'trambar-www';
+import Relaks, { useProgress, useLocalized, useRichText } from 'trambar-www';
 
 async function BlogNavigation(props) {
     const { db, route, type } = props;
     const { identifier, slug } = route.params;
     const [ show ] = useProgress();
+    const t = useLocalized();
     const rt = useRichText();
 
     render();
@@ -60,9 +61,10 @@ async function BlogNavigation(props) {
         if (count === 0) {
             return <div className="box hidden" />;
         } else {
+            const heading = t(count === 1 ? 'Category' : 'Categories');
             return (
                 <div className="box">
-                    <h4>{(count === 1) ? 'Category' : 'Categories'}</h4>
+                    <h4>{heading}</h4>
                     <ul className="categories">
                         {categories.map(renderCategory)}
                     </ul>
@@ -82,9 +84,10 @@ async function BlogNavigation(props) {
         if (count === 0) {
             return <div className="box hidden" />;
         } else {
+            const headings = t(count === 1 ? 'Tag' : 'Tags');
             return (
                 <div className="box">
-                    <h4>{(count === 1) ? 'Tag' : 'Tags'}</h4>
+                    <h4>{headings}</h4>
                     <div className="tags">
                         {tags.map(renderTag)}
                     </div>

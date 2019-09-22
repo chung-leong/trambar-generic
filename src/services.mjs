@@ -1,4 +1,4 @@
-import { RouteManager, DataSource, Excel, GitLab, Wordpress } from 'trambar-www';
+import { DataSource, RouteManager, LocaleManager, Excel, GitLab, Wordpress } from 'trambar-www';
 import { routes, rewrites } from './routing.mjs';
 
 async function start(options) {
@@ -16,8 +16,19 @@ async function start(options) {
     routeManager.activate();
     await routeManager.start(options.routePagePath);
 
-    return { dataSource, routeManager };
+    const localeManager = new LocaleManager({
+        loadFunc: async (language) => {
+            const file = await dataSource.fetchExcelFile('ui-text');
+            const table = file.localization(language);
+            return table;
+        },
+    });
+    localeManager.activate();
+    await localeManager.start(options.preferredLanguage);
+
+    return { dataSource, routeManager, localeManager };
 }
+
 
 export {
     start,

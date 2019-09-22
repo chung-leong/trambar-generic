@@ -9,7 +9,7 @@ window.addEventListener('load', initialize);
 async function initialize(evt) {
     const options = window.ssrOptions;
     const services = await start(options);
-    const attrs = { ssr: options.ssrTarget, lang: options.preferredLanguage };
+    const attrs = { ssr: options.ssrTarget };
     const container = document.getElementById('react-container');
     await renderSSR(container, services, attrs);
     await renderCSR(container, services, attrs);

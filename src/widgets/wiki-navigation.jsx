@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import Relaks, { useProgress, useRichText } from 'trambar-www';
+import Relaks, { useProgress, useLocalized, useRichText } from 'trambar-www';
 
 async function WikiNavigation(props) {
     const { db, route } = props;
     const { identifier, slug } = route.params;
     const [ show ] = useProgress();
+    const t = useLocalized();
     const rt = useRichText();
 
     render();
@@ -38,9 +39,10 @@ async function WikiNavigation(props) {
         if (count === 0) {
             return <div className="box hidden" />;
         } else {
+            const heading = t(`Related ${count === 1 ? 'article' : 'articles'}`);
             return (
                 <div className="box">
-                    <h4>Related {(count === 1) ? 'article' : 'articles'}</h4>
+                    <h4>{heading}</h4>
                     <ul className="pages">
                         {related.map(renderPage)}
                     </ul>
