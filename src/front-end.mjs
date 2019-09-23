@@ -4,6 +4,7 @@ import { Database } from './database.mjs';
 import { Route } from './routing.mjs';
 
 import { TopNavigation } from './widgets/top-navigation.jsx';
+import { ErrorBoundary } from './widgets/error-boundary.jsx';
 
 import './style.scss';
 
@@ -68,13 +69,21 @@ function FrontEnd(props) {
 
     function renderNavigation() {
         const props = { db, route, onLangChange: handleLangChange };
-        return <TopNavigation {...props} />;
+        return (
+            <ErrorBoundary>
+                <TopNavigation {...props} />
+            </ErrorBoundary>
+        );
     }
 
     function renderCurrentPage() {
         const Page = route.params.module.default;
         const props = { db, route };
-        return <Page {...props} />;
+        return (
+            <ErrorBoundary>
+                <Page {...props} />
+            </ErrorBoundary>
+        );
     }
 }
 
