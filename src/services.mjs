@@ -18,9 +18,14 @@ async function start(options) {
 
     const localeManager = new LocaleManager({
         loadFunc: async (language) => {
-            const file = await dataSource.fetchExcelFile('ui-text');
-            const table = file.localization(language, true);
-            return table;
+            const [ lc, cc ] = language.split('-');
+            try {
+                const module = await import(`./locales/locale-${lc}` /* webpackChunkName: "[request]" */);
+                const table = module.default;
+                return table;
+            } catch (err) {
+                return {};
+            }
         },
     });
     localeManager.activate();
