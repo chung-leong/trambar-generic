@@ -64,6 +64,38 @@ class Database {
     }
 }
 
+class Route {
+    constructor(routeManager) {
+        this.routeManager = routeManager;
+        this.name = routeManager.name;
+        this.params = routeManager.params;
+        this.history = routeManager.history;
+        this.url = routeManager.url;
+        this.time = routeManager.time;
+    }
+
+    change(url, options) {
+        return this.routeManager.change(url, options);
+    }
+
+    find(name, params) {
+        return this.routeManager.find(name, params);
+    }
+}
+
+class Locale {
+    constructor(localeManager) {
+        this.localeManager = localeManager;
+        this.language = localeManager.language;
+    }
+
+    localize(data, params) {
+        return this.localeManager.localize(data, params);
+    }
+}
+
 export {
     Database,
+    Route,
+    Locale,
 };

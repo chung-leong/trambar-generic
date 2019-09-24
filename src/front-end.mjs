@@ -1,7 +1,6 @@
 import React, { useMemo, useEffect } from 'react';
 import { useListener, useEventTime, useEnvMonitor, Env } from 'trambar-www';
-import { Database } from './database.mjs';
-import { Route } from './routing.mjs';
+import { Database, Route, Locale } from './proxies.mjs';
 
 import { TopNavigation } from './widgets/top-navigation.jsx';
 import { ErrorBoundary } from './widgets/error-boundary.jsx';
@@ -19,12 +18,11 @@ function FrontEnd(props) {
     const route = useMemo(() => {
         return new Route(routeManager);
     }, [ routeManager, routeChanged ]);
-    const env = useEnvMonitor({
-        language: localeManager.language,
-        localizeFunc: localeManager.localize,
-        imageBaseURL: dataSource.options.baseURL,
-        ssr,
-    });
+    const locale = useMemo(() => {
+        return new Locale(localeManager);
+    }, [ localeManager, localeChanged ])
+    const imageBaseURL = dataSource.options.baseURL;
+    const env = useEnvMonitor({ locale, imageBaseURL, ssr });
 
     const handleLangChange = useListener((evt) => {
         localeManager.set(evt.lang);
@@ -42,7 +40,7 @@ function FrontEnd(props) {
     }, [ dataSource, routeManager, localeManager ]);
     useEffect(() => {
         dataSource.log();
-    }, []);
+    }, [ dataSource ]);
     useEffect(() => {
         // reset scroll position unless route is old
         // (i.e. we've reached via back or forward button)

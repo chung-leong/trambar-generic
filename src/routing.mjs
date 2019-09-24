@@ -1,22 +1,3 @@
-class Route {
-    constructor(routeManager) {
-        this.routeManager = routeManager;
-        this.name = routeManager.name;
-        this.params = routeManager.params;
-        this.history = routeManager.history;
-        this.url = routeManager.url;
-        this.time = routeManager.time;
-    }
-
-    change(url, options) {
-        return this.routeManager.change(url, options);
-    }
-
-    find(name, params) {
-        return this.routeManager.find(name, params);
-    }
-}
-
 const routes = {
     'home': {
         path: '/',
@@ -95,7 +76,6 @@ const rewrites = [
 ];
 
 export {
-    Route,
     routes,
     rewrites,
 };

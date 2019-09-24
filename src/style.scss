@@ -384,6 +384,7 @@ A {
 
     .languages {
         float: right;
+        user-select: none;
 
         A {
             text-transform: uppercase;
