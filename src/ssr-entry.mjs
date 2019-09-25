@@ -91,8 +91,7 @@ function fillTemplate(html, contents, script) {
     const err = (contents instanceof Error) ? contents : null;
     if (err) {
         // place the error stack in front of the React container
-        const message = (process.env.NODE_ENV === 'production') ? err.message : err.stack;
-        const pre = `<pre id="ssr-error">${message}</pre>`;
+        const pre = `<pre id="ssr-error">${err.stack}</pre>`;
         return before + pre + openTag + closeTag + script + after;
     } else {
         return before + openTag + contents + closeTag + script + after;
