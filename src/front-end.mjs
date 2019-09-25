@@ -78,7 +78,7 @@ function FrontEnd(props) {
         const Page = route.params.module.default;
         const props = { db, route };
         return (
-            <ErrorBoundary>
+            <ErrorBoundary route={route}>
                 <Page {...props} />
             </ErrorBoundary>
         );

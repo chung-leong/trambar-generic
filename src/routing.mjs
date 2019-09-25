@@ -50,7 +50,12 @@ const routes = {
             match.params.module = require('pages/search-page.jsx');
         }
     },
-
+    'missing': {
+        path: '*',
+        load: (match) => {
+            match.params.module = require('pages/missing-page.jsx');
+        }
+    },
 };
 
 class CommitRewriter {

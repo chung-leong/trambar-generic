@@ -81,6 +81,10 @@ class Route {
     find(name, params) {
         return this.routeManager.find(name, params);
     }
+
+    substitute(name, params) {
+        return this.routeManager.substitute(name, params);
+    }
 }
 
 class Locale {

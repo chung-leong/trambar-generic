@@ -48,6 +48,10 @@ var clientConfig = {
                     'sass-loader'
                 ],
             },
+            {
+                test: /\.(jpeg|jpg|png|gif|svg)$/,
+                loader: 'file-loader',
+            },
         ]
     },
     plugins: [

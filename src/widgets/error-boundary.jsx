@@ -44,7 +44,16 @@ class ErrorBoundary extends Component {
     }
 
     componentDidCatch(error, info) {
-        const { children } = this.props;
+        const { children, route } = this.props;
+        try {
+            if (error.status === 404) {
+                if (route && route.name !== 'missing') {
+                    route.substitute('missing');
+                    return;
+                }
+            }
+        } catch (err) {
+        }
         this.setState({ error, delinquents: children });
     }
 }

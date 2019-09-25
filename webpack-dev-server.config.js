@@ -69,7 +69,7 @@ module.exports = {
                     </body>
                 </html>
             `;
-            res.status(500).type('html').send(html);
+            res.status(err.status || 500).type('html').send(html);
         });
     }
 }
