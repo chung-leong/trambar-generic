@@ -27,6 +27,25 @@ async function initialize(evt) {
  * @return {Promise}
  */
 async function renderSSR(container, services, attrs) {
+    const ssrError = document.getElementById('ssr-error');
+    if (ssrError) {
+        // remove the error message when the route changes
+        const { routeManager } = services;
+        const initialURL = routeManager.url;
+        const removeSSRError = () => {
+            if (routeManager.url !== initialURL) {
+                routeManager.removeEventListener('change', removeSSRError);
+                ssrError.remove();
+            }
+        };
+        routeManager.addEventListener('change', removeSSRError);
+
+        // If an error occurs on the server side, there's no point in
+        // attempting to rehydrate, since we'll just run into the same error
+        // (the DOM is empty in any event). We'll most likely encounter that
+        // error again in CSR mode.
+        return;
+    }
     const element = createElement(FrontEnd, { ...services, ...attrs });
     const seeds = await harvest(element, { seeds: true });
     plant(seeds);

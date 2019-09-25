@@ -502,3 +502,11 @@ A {
         padding-inline-start: 2em;
     }
 }
+
+#ssr-error {
+    padding: 1em;
+    overflow: auto;
+    margin: 0;
+    color: red;
+    background-color: lightyellow;
+}
