@@ -1,15 +1,28 @@
-$nav-fg-color: #ffffff;
-$nav-bg-color: #000000;
+$nav-text-color: #ffffff;
+$nav-background-color: #000000;
 $nav-hover-color: #6666ff;
 
-$link-fg-color: #000000;
+$link-text-color: #000000;
 $link-hover-color: #0000cc;
 
-$side-box-fg-color: $nav-bg-color;
+$side-box-text-color: $nav-background-color;
+$side-box-border-color: $nav-background-color;
 
-$dlg-bg-color: #202020;
-$dlg-fg-color: #ffffff;
+$dlg-background-color: #202020;
+$dlg-text-color: #ffffff;
 $dlg-shadow-color: #000000;
+
+$wiki-blockquote-text-color: #666666;
+$wiki-blockquote-background-color: transparent;
+$wiki-blockquote-border-color: #999999;
+
+$wiki-code-border-color: #cccccc;
+$wiki-code-text-color: #666666;
+$wiki-code-background-color: transparent;
+$wiki-code-inline-text-color: $wiki-code-text-color;
+$wiki-code-inline-background-color: #dddddd;
+
+$wiki-table-border-color: #cccccc;
 
 * {
     box-sizing: border-box;
@@ -23,7 +36,7 @@ BODY {
 
 A {
     &:link, &:visited {
-        color: $link-fg-color;
+        color: $link-text-color;
 
         &:hover {
             color: $link-hover-color;
@@ -48,9 +61,9 @@ A {
     padding: 1em 0 1em 1em;
 
     .box {
-        color: $side-box-fg-color;
+        color: $side-box-text-color;
         padding: 0.5em 0.5em 0.5em 0.5em;
-        border: 3px solid $side-box-fg-color;
+        border: 3px solid $side-box-border-color;
         transition: opacity 0.3s;
         margin-bottom: 1em;
 
@@ -75,8 +88,8 @@ A {
     display: flex;
     position: relative;
     flex-direction: column;
-    background-color: $dlg-bg-color;
-    color: $dlg-fg-color;
+    background-color: $dlg-background-color;
+    color: $dlg-text-color;
     padding: 1em 1em 1em 1em;
     box-shadow: 5px 5px 4px $dlg-shadow-color;
 
@@ -126,6 +139,10 @@ A {
 }
 
 .home-page {
+    @extend .page;
+}
+
+.missing-page {
     @extend .page;
 }
 
@@ -251,7 +268,7 @@ A {
             position: absolute;
             left: 6px;
             width: 13px;
-            background: $nav-bg-color;
+            background: $nav-background-color;
             animation: loading-animation 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
 
             &:nth-child(1) {
@@ -372,8 +389,8 @@ A {
 }
 
 .top-navigation {
-    color: $nav-fg-color;
-    background-color: $nav-bg-color;
+    color: $nav-text-color;
+    background-color: $nav-background-color;
     padding: 0.25em 0.5em 0.25em 0.5em;
     overflow: hidden;
 
@@ -398,7 +415,7 @@ A {
 
     A {
         &:link, &:visited {
-            color: $nav-fg-color;
+            color: $nav-text-color;
             text-decoration: none;
 
             &:hover {
@@ -412,6 +429,56 @@ A {
     IMG {
         vertical-align: middle;
         cursor: pointer;
+    }
+
+    BLOCKQUOTE {
+        color: $wiki-blockquote-text-color;
+        background-color: $wiki-blockquote-background-color;
+        margin-left: 0;
+        padding: 0.5em 0.5em 0.5em 1.5em;
+        border-left: 4px solid $wiki-blockquote-border-color;
+
+
+        P:first-child {
+            margin-top: 0;
+        }
+
+        P:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    TABLE {
+        border: 1px solid $wiki-table-border-color;
+        border-collapse: collapse;
+
+        TH, TD {
+            text-align: left;
+            border: 1px solid $wiki-table-border-color;
+            padding: 0.25em 0.25em 0.25em 0.25em;
+        }
+
+        TH {
+            border-bottom: 2px double $wiki-table-border-color;
+        }
+    }
+
+    CODE {
+        color: $wiki-code-inline-text-color;
+        background-color: $wiki-code-inline-background-color;
+        padding: 2px 4px 2px 4px;
+    }
+
+    PRE {
+        border: 1px solid $wiki-code-border-color;
+        background-color: $wiki-code-background-color;
+        padding: 0.75em 0.75em 0.75em 0.75em;
+
+        CODE {
+            color: $wiki-code-text-color;
+            background-color: transparent;
+            padding: 0;
+        }
     }
 }
 
