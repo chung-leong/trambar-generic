@@ -11,23 +11,43 @@ async function BlogContents(props) {
     const rt = useRichText({
         adjustFunc: (type, props, children) => {
             if (type === 'a' && props.href) {
+                // see if link is to a page on the same site
+                let href = props.href, path, target;
+                if (href.startsWith('http:')) {
+                    href = 'https:' + href.substr(5);
+                }
+                if (!/^\w+:/.test(href)) {
+                    path = href;
+                    href = site.url + href;
+                } else if (href.startsWith(site.url)) {
+                    path = href.substr(site.url.length);
+                } else {
+                    target = '_blank';
+                }
+
                 let linkSlug;
-                if (props.href.startsWith(site.url)) {
-                    const path = props.href.substr(site.url.length);
+                if (path) {
+                    // extract post slug from path
                     const m = /^\/([\w\-]+)\/?$/.exec(path);
                     if (m) {
                         linkSlug = m[1];
                     }
                 }
                 if (linkSlug) {
-                    const href = route.find('blog-post', { identifier, slug: linkSlug });
-                    props = { ...props, href, target: undefined };
+                    // redirect to internal URL
+                    href = route.find('blog-post', { identifier, slug: linkSlug });
                 } else {
-                    const target = '_blank';
-                    props = { ...props, target: '_blank' };
+                    target = '_blank';
                 }
-                return { type, props, children };
+                props = { ...props, href, target };
+            } else if (type === 'img' && props.src) {
+                if (!/^\w+:/.test(props.src)) {
+                    // make URL absolute
+                    const src = site.url + props.src;
+                    props = { ...props, src };
+                }
             }
+            return { type, props, children };
         }
     });
 
