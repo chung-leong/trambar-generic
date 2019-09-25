@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([["locale-sk"],{158:function(e,a,s){"use strict";s.r(a),s.d(a,"default",(function(){return i}));var i={Close:"Zavrieť","Previous search":"Predchádzajúce vyhľadávanie","Previous searches":"Predchádzajúce vyhľadávania",Category:"Kategórie",Categories:"Kategórie",Tag:"Tag",Tags:"Tagy","Related article":"Súvisiaci článok","Related articles":"Súvisiace články","Search results":"Výsledky vyhľadávania","No results":"Žiadne výsledky"}}}]);
+//# sourceMappingURL=locale-sk.js.map

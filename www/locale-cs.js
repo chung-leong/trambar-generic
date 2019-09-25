@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([["locale-cs"],{148:function(e,s,a){"use strict";a.r(s),a.d(s,"default",(function(){return o}));var o={Close:"Zavřít","Previous search":"Předchozí hledání","Previous searches":"Předchozí vyhledávání",Category:"Kategorie",Categories:"Kategorie",Tag:"Tag",Tags:"Tagy","Related article":"Související článek","Related articles":"Související články","Search results":"Výsledky vyhledávání","No results":"Žádné výsledky"}}}]);
+//# sourceMappingURL=locale-cs.js.map

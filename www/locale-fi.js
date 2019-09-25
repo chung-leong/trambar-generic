@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([["locale-fi"],{151:function(e,t,a){"use strict";a.r(t),a.d(t,"default",(function(){return i}));var i={Close:"Sulje","Previous search":"Edellinen haku","Previous searches":"Aiemmat haut",Category:"Kategoria",Categories:"Kategoriat",Tag:"Tag",Tags:"Tagit","Related article":"Aiheeseen liittyvä artikkeli","Related articles":"Aiheeseen liittyvät artikkelit","Search results":"Hakutulokset","No results":"Ei tuloksia"}}}]);
+//# sourceMappingURL=locale-fi.js.map

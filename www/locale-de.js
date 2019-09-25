@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([["locale-de"],{149:function(e,r,a){"use strict";a.r(r),a.d(r,"default",(function(){return s}));var s={Close:"Schließen","Previous search":"Vorherige Suche","Previous searches":"Vorherige Suchanfragen",Category:"Kategorie",Categories:"Kategorien",Tag:"Tag",Tags:"Tags","Related article":"Verwandte Artikel","Related articles":"Verwandte Artikel","Search results":"Suchergebnisse","No results":"Keine Ergebnisse"}}}]);
+//# sourceMappingURL=locale-de.js.map
