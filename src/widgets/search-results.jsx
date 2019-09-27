@@ -28,22 +28,17 @@ async function SearchResults(props) {
         };
     }, []);
 
-    let hasResults = false, searchComplete = false;
+    let resultCount = 0;
+    let searchComplete = false;
     render();
     const wikis = await searchWiki();
-    if (wikis.length > 0) {
-        hasResults = true;
-    }
+    resultCount += wikis.length;
     render();
     const files = await searchExcelFiles();
-    if (files.length > 0) {
-        hasResults = true;
-    }
+    resultCount += files.length;
     render();
     const blogResults = await searchBlogs();
-    if (blogResults.length > 0) {
-        hasResults = true;
-    }
+    resultCount += blogResults.total;
     searchComplete = true;
     render();
 
@@ -97,6 +92,21 @@ async function SearchResults(props) {
                 }
             }
         }
+
+        // add up the total
+        list.total = 0;
+        list.pages = 0;
+        for (let site of sites) {
+            const { identifier } = site;
+            const posts = resultSets[identifier];
+            if (posts.total) {
+                list.total += posts.total;
+            }
+            if (posts.pages) {
+                list.pages += posts.pages;
+            }
+        }
+
         // fetch more from each blog
         list.more = () => {
             for (let site of sites) {
@@ -117,7 +127,7 @@ async function SearchResults(props) {
     }
 
     function renderContents() {
-        if (!hasResults && !searchComplete) {
+        if (resultCount === 0 && !searchComplete) {
             return <LoadingAnimation />;
         } else {
             return (
@@ -132,7 +142,13 @@ async function SearchResults(props) {
     }
 
     function renderTitle() {
-        const heading = t(hasResults ? 'Search results' : 'No results');
+        let heading;
+        if (resultCount > 0) {
+            const count = (resultCount < maximum) ? resultCount : `${maximum}+`;
+            heading = `${t('Search results')} (${count})`;
+        } else {
+            heading = t('No results');
+        }
         return <h2>{heading}</h2>;
     }
 
