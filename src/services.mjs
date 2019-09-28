@@ -5,6 +5,7 @@ async function start(options) {
     const dataSource = new DataSource([ Excel, GitLab, Wordpress ], {
         baseURL: options.dataSourceBaseURL,
         fetchFunc: options.fetchFunc,
+        refreshInterval: 5 * 60 * 1000,
     });
     dataSource.activate();
 
