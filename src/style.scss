@@ -24,6 +24,8 @@ $wiki-code-inline-background-color: #dddddd;
 
 $wiki-table-border-color: #cccccc;
 
+$narrow-ui-width: 700px;
+
 * {
     box-sizing: border-box;
 }
@@ -54,6 +56,15 @@ A {
 
     .side-bar {
         flex: 0 0 20em;
+        margin-right: -1em;
+
+        @media screen and (max-width: $narrow-ui-width) {
+            display: none;
+        }
+
+        @media print {
+            display: none;
+        }
     }
 }
 
@@ -114,7 +125,7 @@ A {
 
 .front-end {
     .page-container {
-        margin: 0 0 1em 1em;
+        margin: 0 1em 1em 1em;
     }
 }
 
@@ -372,6 +383,7 @@ A {
 
 .search-box {
     float: right;
+    padding: 0 0.25em 0 0.25em;
 
     INPUT {
         border: 0;
@@ -394,6 +406,19 @@ A {
         transform: rotate(45deg);
         font-weight: bold;
         font-size: 1.2em;
+    }
+
+    @media screen and (max-width: $narrow-ui-width) {
+        float: none;
+        display: flex;
+
+        input {
+            flex: 1 1 auto;
+        }
+
+        A {
+            flex: 0 0 auto;
+        }
     }
 }
 
@@ -439,6 +464,10 @@ A {
                 color: $nav-hover-color;
             }
         }
+    }
+
+    @media print {
+        display: none;
     }
 }
 
