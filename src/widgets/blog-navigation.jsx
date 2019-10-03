@@ -57,7 +57,7 @@ async function BlogNavigation(props) {
     }
 
     function renderCategoryBox() {
-        const count = (categories) ? categories.length : 0;
+        const count = categories?.length || 0;
         if (count === 0) {
             return <div className="box hidden" />;
         } else {
@@ -80,7 +80,7 @@ async function BlogNavigation(props) {
     }
 
     function renderTagBox() {
-        const count = (tags) ? tags.length : 0;
+        const count = tags?.length || 0;
         if (count === 0) {
             return <div className="box hidden" />;
         } else {

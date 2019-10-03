@@ -47,7 +47,7 @@ async function TopNavigation(props) {
     }
 
     function renderTitle() {
-        const title = (metadata) ? metadata.title : '\u00a0';
+        const title = metadata?.title || '\u00a0';
         return <h1 className="title">{title}</h1>;
     }
 

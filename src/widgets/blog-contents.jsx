@@ -71,7 +71,7 @@ async function BlogContents(props) {
             return <LoadingAnimation />;
         } else {
             const { date } = post;
-            const authorName = (author) ? rt(author.name) : '';
+            const authorName = rt(author?.name);
             return (
                 <React.Fragment>
                     <h2>{rt(post.title)}</h2>

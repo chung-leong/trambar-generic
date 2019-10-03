@@ -28,15 +28,22 @@ var clientConfig = {
                 type: 'javascript/auto',
                 query: {
                     presets: [
-                        [ 'env', { modules: false } ],
-                        'react',
-                        'stage-0',
+                        [ '@babel/preset-env', { modules: false } ],
+                        [ '@babel/preset-react' ],
                     ],
                     plugins: [
+                        '@babel/plugin-proposal-class-properties',
+                        '@babel/plugin-proposal-export-default-from',
+                        '@babel/plugin-proposal-export-namespace-from',
+                        '@babel/plugin-proposal-json-strings',
+                        '@babel/plugin-proposal-nullish-coalescing-operator',
+                        '@babel/plugin-proposal-optional-chaining',
+                        '@babel/plugin-proposal-throw-expressions',
+                        '@babel/plugin-syntax-dynamic-import',
+                        '@babel/plugin-syntax-import-meta',
+                        '@babel/plugin-transform-regenerator',
+                        '@babel/plugin-transform-runtime',
                         'syntax-async-functions',
-                        'syntax-class-properties',
-                        'transform-regenerator',
-                        'transform-runtime',
                     ]
                 }
             },

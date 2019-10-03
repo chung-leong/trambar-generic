@@ -35,7 +35,7 @@ async function WikiNavigation(props) {
     }
 
     function renderPageBox() {
-        const count = (related) ? related.length : 0;
+        const count = related?.length || 0;
         if (count === 0) {
             return <div className="box hidden" />;
         } else {
