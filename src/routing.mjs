@@ -1,8 +1,10 @@
+import { Database } from './proxies.mjs';
+
 const routes = {
     'home': {
         path: '/',
         load: (match) => {
-            match.params.module = require('pages/home-page.jsx');
+            match.params.module = require('pages/info-page.jsx');
         }
     },
     'wiki': {
@@ -50,6 +52,12 @@ const routes = {
             match.params.module = require('pages/search-page.jsx');
         }
     },
+    'info': {
+        path: '/info/',
+        load: (match) => {
+            match.params.module = require('pages/info-page.jsx');
+        }
+    },
     'missing': {
         path: '*',
         load: (match) => {
@@ -80,7 +88,28 @@ const rewrites = [
     CommitRewriter,
 ];
 
+async function chooseHome(dataSource) {
+    const db = new Database(dataSource);
+    const [ page ] = await db.fetchWikiPages();
+    if (page) {
+        const { identifier, slug } = page;
+        return {
+            name: 'wiki',
+            params: { identifier, slug }
+        };
+    }
+    const [ site ] = await db.fetchWPSites();
+    if (site) {
+        const { identifier } = site;
+        return {
+            name: 'blog',
+            params: { identifier }
+        };
+    }
+}
+
 export {
     routes,
     rewrites,
+    chooseHome,
 };

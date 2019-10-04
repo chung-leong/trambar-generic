@@ -4,11 +4,10 @@ import { WikiContents } from '../widgets/wiki-contents.jsx';
 import { WikiNavigation } from '../widgets/wiki-navigation.jsx';
 
 function WikiPage(props) {
-    const { route } = props;
     return (
         <div className="wiki-page">
             <div className="contents">
-                <WikiContents {...props} key={route.url} />
+                <WikiContents {...props} key={props.route.url} />
             </div>
             <div className="side-bar">
                 <WikiNavigation {...props} />

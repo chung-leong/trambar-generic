@@ -4,11 +4,10 @@ import { SearchResults } from '../widgets/search-results.jsx';
 import { SearchNavigation } from '../widgets/search-navigation.jsx';
 
 function SearchPage(props) {
-    const { route } = props;
     return (
         <div className="search-page">
             <div className="contents">
-                <SearchResults {...props} key={route.url} />
+                <SearchResults {...props} key={props.route.url} />
             </div>
             <div className="side-bar">
                 <SearchNavigation {...props} />

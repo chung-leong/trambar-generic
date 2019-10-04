@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import Relaks, { useProgress, useLanguageFilter } from 'trambar-www';
+import Relaks, { useProgress, usePlainText, useLanguageFilter } from 'trambar-www';
 
 import { SearchBox } from './search-box.jsx';
 
@@ -7,6 +7,7 @@ async function TopNavigation(props) {
     const { db, route, onLangChange } = props;
     const [ show ] = useProgress();
     const f = useLanguageFilter();
+    const pt = usePlainText();
 
     const handleLanguageClick = useCallback((evt) => {
         const href = evt.target.getAttribute('href');
@@ -52,7 +53,18 @@ async function TopNavigation(props) {
     }
 
     function renderLanguages() {
-        const languages = getLanguages(pages, files, sites);
+        const languages = [];
+        for (let list of [ pages, files, sites ]) {
+            if (list instanceof Array) {
+                for (let object of list) {
+                    for (let language of object.languages()) {
+                        if (languages.indexOf(language) === -1) {
+                            languages.push(language);
+                        }
+                    }
+                }
+            }
+        }
         const children = [];
         for (let language of languages) {
             const key = children.length;
@@ -74,7 +86,10 @@ async function TopNavigation(props) {
         const buttons = [];
         if (pages) {
             for (let page of pages) {
-                const label = getPageTitle(page);
+                const heading = page.blocks.find((block) => {
+                    return (block.token.type === 'heading');
+                });
+                const label = pt(heading) || page.title;
                 const url = route.find('wiki', {
                     identifier: page.identifier,
                     slug: page.slug,
@@ -84,7 +99,7 @@ async function TopNavigation(props) {
         }
         if (files) {
             for (let file of files) {
-                const label = getFileTitle(file);
+                const label = pt(file.title) || file.identifier;
                 const url = route.find('excel', {
                     identifier: file.identifier,
                 });
@@ -93,7 +108,7 @@ async function TopNavigation(props) {
         }
         if (sites) {
             for (let site of sites) {
-                const label = site.name.plainText();
+                const label = pt(site.name);
                 const url = route.find('blog', {
                     identifier: site.identifier,
                 });
@@ -114,35 +129,6 @@ async function TopNavigation(props) {
     function renderSearchBox() {
         return <SearchBox route={route} />;
     }
-}
-
-function getPageTitle(page) {
-    for (let block of page.blocks) {
-        if (block.token.type === 'heading') {
-            return block.token.markdown;
-        }
-    }
-    return page.title;
-}
-
-function getFileTitle(file) {
-    return file.title || file.identifier;
-}
-
-function getLanguages(...lists) {
-    const languages = [];
-    for (let list of lists) {
-        if (list instanceof Array) {
-            for (let object of list) {
-                for (let language of object.languages()) {
-                    if (languages.indexOf(language) === -1) {
-                        languages.push(language);
-                    }
-                }
-            }
-        }
-    }
-    return languages;
 }
 
 const component = Relaks.memo(TopNavigation);

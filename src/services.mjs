@@ -1,5 +1,5 @@
 import { DataSource, RouteManager, LocaleManager, Excel, GitLab, Wordpress } from 'trambar-www';
-import { routes, rewrites } from './routing.mjs';
+import { routes, rewrites, chooseHome } from './routing.mjs';
 
 async function start(options) {
     const dataSource = new DataSource([ Excel, GitLab, Wordpress ], {
@@ -15,6 +15,17 @@ async function start(options) {
         rewrites,
     });
     routeManager.activate();
+    routeManager.addEventListener('beforechange', (evt) => {
+        evt.postponeDefault(async () => {
+            if (evt.name === 'home') {
+                const home = await chooseHome(dataSource);
+                if (home) {
+                    evt.substitute(home.name, home.params, true);
+                    evt.preventDefault();
+                }
+            }
+        });
+    });
     await routeManager.start(options.routePagePath);
 
     const localeManager = new LocaleManager({

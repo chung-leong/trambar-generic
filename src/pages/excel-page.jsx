@@ -3,11 +3,10 @@ import React from 'react';
 import { ExcelContents } from '../widgets/excel-contents.jsx';
 
 function ExcelPage(props) {
-    const { route } = props;
     return (
         <div className="blog-category-page">
             <div className="contents">
-                <ExcelContents {...props} key={route.url} />
+                <ExcelContents {...props} key={props.route.url} />
             </div>
         </div>
     );
