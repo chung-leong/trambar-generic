@@ -21,6 +21,8 @@ const table = {
         "Wyniki wyszukiwania",
     "No results":
         "Brak wyników",
+    "Archived":
+        "Zarchiwizowany",
 };
 
 export {

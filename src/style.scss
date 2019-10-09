@@ -382,30 +382,28 @@ A {
 }
 
 .search-box {
+    clear: right;
     float: right;
-    padding: 0 0.25em 0 0.25em;
+    margin-left: 1em;
 
     INPUT {
         border: 0;
         padding: 3px 3px 3px 3px;
         margin-right: 8px;
         width: 20em;
-        vertical-align: text-bottom;
+        vertical-align: middle;
     }
 
     A {
-        user-select: none;
-        opacity: 0.5;
-        &:link, &:visited {
-            opacity: 1;
-        }
-    }
+        svg {
+            height: 1.5em;
+            padding: 0.25em 0.25em 0.25em 0.1em;
+            vertical-align: middle;
 
-    .magnifying-class {
-        display: inline-block;
-        transform: rotate(45deg);
-        font-weight: bold;
-        font-size: 1.2em;
+            path {
+                fill: $nav-text-color;
+            }
+        }
     }
 
     @media screen and (max-width: $narrow-ui-width) {
@@ -433,26 +431,37 @@ A {
 .top-navigation {
     color: $nav-text-color;
     background-color: $nav-background-color;
-    padding: 0.25em 0.5em 0.25em 0.5em;
+    padding: 0.5em 0.25em 0.25em 1em;
     overflow: hidden;
 
     .title {
-        padding: 0.25em 0.25em 0.25em 0.25em;
-        margin: 0;
+        float: left;
+        margin: 0 0 0.25em 0;
+    }
+
+    .status, .git-tag {
+        float: right;
+        margin: 0 0.25em 0 0;
     }
 
     .languages {
         float: right;
         user-select: none;
+        margin-right: 0.25em;
 
         A {
             text-transform: uppercase;
         }
     }
 
-    .button {
-        display: inline-block;
-        padding: 0.25em 0.5em 0.25em 0.5em;
+    .buttons {
+        float: left;
+        clear: left;
+
+        .button {
+            display: inline-block;
+            padding: 0.25em 1em 0.25em 2px;
+        }
     }
 
     A {

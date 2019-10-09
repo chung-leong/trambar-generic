@@ -21,6 +21,8 @@ const table = {
     	"Výsledky vyhledávání",
     "No results":
     	"Žádné výsledky",
+    "Archived":
+        "Archivovány",
 };
 
 export {

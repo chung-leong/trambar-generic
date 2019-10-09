@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import Relaks, { useProgress, usePlainText, useLanguageFilter } from 'trambar-www';
+import Relaks, { useProgress, usePlainText, useLocalized, useLanguageFilter } from 'trambar-www';
 
 import { SearchBox } from './search-box.jsx';
 
@@ -7,6 +7,7 @@ async function TopNavigation(props) {
     const { db, route, onLangChange } = props;
     const [ show ] = useProgress();
     const f = useLanguageFilter();
+    const t = useLocalized();
     const pt = usePlainText();
 
     const handleLanguageClick = useCallback((evt) => {
@@ -41,6 +42,8 @@ async function TopNavigation(props) {
             <div className="top-navigation">
                 {renderLanguages()}
                 {renderTitle()}
+                {renderStatus()}
+                {renderGitTag()}
                 {renderMenu()}
                 {renderSearchBox()}
             </div>
@@ -50,6 +53,22 @@ async function TopNavigation(props) {
     function renderTitle() {
         const title = metadata?.title || '\u00a0';
         return <h1 className="title">{title}</h1>;
+    }
+
+    function renderStatus() {
+        if (!metadata?.archived) {
+            return;
+        }
+        return <h3 className="status">({t('Archived')})</h3>;
+    }
+
+    function renderGitTag() {
+        const tag = route.context.commit;
+        if (!tag) {
+            return;
+        }
+        const tagAbbrev = /^\w{40}$/.test(tag) ? tag.substr(0, 8) : tag;
+        return <h4 className="git-tag">({tagAbbrev})</h4>;
     }
 
     function renderLanguages() {
@@ -115,7 +134,11 @@ async function TopNavigation(props) {
                 buttons.push({ label, url });
             }
         }
-        return buttons.map(renderButton);
+        return (
+            <div className="buttons">
+                {buttons.map(renderButton)}
+            </div>
+        );
     }
 
     function renderButton(button, i) {

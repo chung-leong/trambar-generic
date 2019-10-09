@@ -1,5 +1,7 @@
 import React, { useState, useRef, useCallback } from 'react';
 
+import SearchIcon from '../assets/octicons-search.svg';
+
 function SearchBox(props) {
     const { route } = props;
     const [ search, setSearch ] = useState(route.params.search || '');
@@ -20,9 +22,7 @@ function SearchBox(props) {
     return (
         <div className="search-box">
             <input value={search} onChange={handleSearchChange} onKeyDown={handleKeyDown}/>
-            <a href={url} ref={link}>
-                <span className="magnifying-class">&#9906;</span>
-            </a>
+            <a href={url} ref={link}><SearchIcon /></a>
         </div>
     );
 }

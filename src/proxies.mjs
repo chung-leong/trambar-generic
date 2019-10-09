@@ -69,6 +69,7 @@ class Route {
         this.routeManager = routeManager;
         this.name = routeManager.name;
         this.params = routeManager.params;
+        this.context = routeManager.context;
         this.history = routeManager.history;
         this.url = routeManager.url;
         this.time = routeManager.time;

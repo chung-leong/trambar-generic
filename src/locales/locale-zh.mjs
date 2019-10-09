@@ -21,6 +21,8 @@ const table = {
     	"搜索结果",
     "No results":
     	"没结果",
+    "Archived":
+        "已存档",
 };
 
 export {

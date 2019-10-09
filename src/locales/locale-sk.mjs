@@ -21,6 +21,8 @@ const table = {
     	"Výsledky vyhľadávania",
     "No results":
     	"Žiadne výsledky",
+    "Archived":
+        "Archivovaný",
 };
 
 export {

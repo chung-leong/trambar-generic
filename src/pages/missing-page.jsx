@@ -1,7 +1,7 @@
 import React from 'react';
 import { harvesting, useLocalized } from 'trambar-www';
 
-import UnicornURL from '../assets/unicorn.svg';
+import Unicorn from '../assets/unicorn.svg';
 
 function MissingPage(props) {
     if (harvesting()) {
@@ -16,7 +16,7 @@ function MissingPage(props) {
     return (
         <div className="missing-page">
             <div className="graphic">
-                <img className="unicorn" src={UnicornURL} />
+                <Unicorn />
             </div>
             <div className="text">
                 <h1 className="title">404 {t("Not Found")}</h1>

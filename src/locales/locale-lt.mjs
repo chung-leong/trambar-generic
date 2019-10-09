@@ -21,6 +21,8 @@ const table = {
     	"Paieškos rezultatai",
     "No results":
     	"Jokių rezultatų",
+    "Archived":
+        "Archyvuotas",
 };
 
 export {

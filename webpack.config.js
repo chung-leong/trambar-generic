@@ -56,7 +56,23 @@ var clientConfig = {
                 ],
             },
             {
-                test: /\.(jpeg|jpg|png|gif|svg)$/,
+                test: /\.svg$/,
+                loader: 'svg-react-loader',
+                exclude: /fonts/,
+                query: {
+                    filters: [
+                        // strip out the dimension
+                        function (value) {
+                            if (value.tagname === 'svg') {
+                                delete value.props.width;
+                                delete value.props.height;
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                test: /\.(jpeg|jpg|png|gif)$/,
                 loader: 'file-loader',
             },
         ]

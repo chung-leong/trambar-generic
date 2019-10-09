@@ -21,6 +21,8 @@ const table = {
     	"Hakutulokset",
     "No results":
     	"Ei tuloksia",
+    "Archived":
+        "Arkistoitu",
 };
 
 export {
