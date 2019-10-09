@@ -54,21 +54,23 @@ module.exports = {
     },
     after: function(app, server) {
         app.use(function(err, req, res, next) {
-            // include index.js in error page, so auto-reload works
-            var html = `
-                <!DOCTYPE html>
-                <html>
-                    <head>
-                        <meta charSet="UTF-8" />
-                        <title>${err.message}</title>
-                        <link href="main.css" rel="stylesheet" />
-                    </head>
-                    <body>
-                        <pre>${err.stack || err.message}</pre>
-                        <script type="text/javascript" src="index.js"></script>
-                    </body>
-                </html>
-            `;
+            var html;
+            if (err.html) {
+                // show the HTML error message that the template has prepared
+                html = err.message;
+            } else {
+                // the template blew up before it reached the front-end code
+                // include index.js in the error page, so auto-reload works
+                html = `
+                    <!DOCTYPE html>
+                    <html>
+                        <body>
+                            <pre>${err.stack || err.message}</pre>
+                            <script type="text/javascript" src="index.js"></script>
+                        </body>
+                    </html>
+                `;
+            }
             res.status(err.status || 500).type('html').send(html);
         });
     }

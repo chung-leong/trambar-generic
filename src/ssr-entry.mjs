@@ -8,17 +8,27 @@ import { HTML } from './html.mjs';
 async function render(options) {
     const services = await start(options);
     const attrs = { ssr: options.ssrTarget };
-    const contents = await renderFrontEnd(services, attrs);
-    const script = packageOptions(options);
     const htmlTemplate = await renderTemplate(services, attrs);
-    const html = fillTemplate(htmlTemplate, contents, script);
-    return html;
+    const script = packageOptions(options);
+    try {
+        const contents = await renderFrontEnd(services, attrs);
+        const html = fillTemplate(htmlTemplate, contents, script);
+        return html;
+    } catch (err) {
+        // Use the generated HTML as the error message so our JS code would
+        // still run on the client side. The same error will occur there again,
+        // which we can more easily debug in Chrome's development console than
+        // in Node.js
+        const html = fillTemplate(htmlTemplate, err, script);
+        const htmlError = new Error(html);
+        htmlError.html = true;
+        htmlError.status = err.status;
+        throw htmlError;
+    }
 }
 
 /**
- * Render the front-end. Catch any error so that the code will still run
- * on the client side. The same error will occur there again, which we can
- * more easily debug in Chrome's development console
+ * Render the front-end
  *
  * @param  {Object} services
  * @param  {Object} attrs
@@ -26,14 +36,10 @@ async function render(options) {
  * @return {Promise<String\Error>}
  */
 async function renderFrontEnd(services, attrs) {
-    try {
-        const ssrElement = createElement(FrontEnd, { ...services, ...attrs });
-        const rootNode = await harvest(ssrElement);
-        const html = renderToString(rootNode);
-        return html;
-    } catch (err) {
-        return err;
-    }
+    const ssrElement = createElement(FrontEnd, { ...services, ...attrs });
+    const rootNode = await harvest(ssrElement);
+    const html = renderToString(rootNode);
+    return html;
 }
 
 /**
@@ -91,10 +97,29 @@ function fillTemplate(html, contents, script) {
     const err = (contents instanceof Error) ? contents : null;
     if (err) {
         // place the error stack in front of the React container
-        const pre = `<pre id="ssr-error">${err.stack}</pre>`;
+        const msg =  getErrorMessage(err);
+        const pre = `<pre id="ssr-error">${msg}</pre>`;
         return before + pre + openTag + closeTag + script + after;
     } else {
         return before + openTag + contents + closeTag + script + after;
+    }
+}
+
+/**
+ * Return appropriate error message
+ *
+ * @param  {Error} err
+ *
+ * @return {String}
+ */
+function getErrorMessage(err) {
+    if (process.env.NODE_ENV !== 'production') {
+        // show call stack during development
+        return err.stack || err.message;
+    } else {
+        // don't show 404 error message since that's handled on the client-side
+        // by routing to MissingPage
+        return (err.status === 404) ? '' : err.message;
     }
 }
 

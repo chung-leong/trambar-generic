@@ -542,4 +542,8 @@ A {
     margin: 0;
     color: red;
     background-color: lightyellow;
+
+    &:empty {
+        display: none;
+    }
 }

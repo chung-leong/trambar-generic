@@ -1,9 +1,17 @@
 import React from 'react';
-import { useLocalized } from 'trambar-www';
+import { harvesting, useLocalized } from 'trambar-www';
 
 import UnicornURL from '../assets/unicorn.svg';
 
 function MissingPage(props) {
+    if (harvesting()) {
+        // throw 404 error during server-side rendering so the
+        // correct status code is sent to the browser
+        const error = new Error('Not Found');
+        error.status = 404;
+        throw error;
+    }
+
     const t = useLocalized();
     return (
         <div className="missing-page">
