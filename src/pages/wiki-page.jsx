@@ -3,7 +3,7 @@ import React from 'react';
 import { WikiContents } from '../widgets/wiki-contents.jsx';
 import { WikiNavigation } from '../widgets/wiki-navigation.jsx';
 
-function WikiPage(props) {
+export function WikiPage(props) {
   return (
     <div className="wiki-page">
       <div className="contents">
@@ -15,7 +15,3 @@ function WikiPage(props) {
     </div>
   );
 }
-
-export {
-  WikiPage as default,
-};

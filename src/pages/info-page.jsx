@@ -2,7 +2,7 @@ import React from 'react';
 
 import { ProjectInformation } from '../widgets/project-information.jsx';
 
-function InfoPage(props) {
+export function InfoPage(props) {
   return (
     <div className="info-page">
       <div className="contents">
@@ -11,7 +11,3 @@ function InfoPage(props) {
     </div>
   );
 }
-
-export {
-  InfoPage as default,
-};

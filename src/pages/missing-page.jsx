@@ -3,7 +3,7 @@ import { harvesting, useLocalized } from 'trambar-www';
 
 import Unicorn from '../assets/unicorn.svg';
 
-function MissingPage(props) {
+export function MissingPage(props) {
   if (harvesting()) {
     // throw 404 error during server-side rendering so the
     // correct status code is sent to the browser
@@ -29,7 +29,3 @@ function MissingPage(props) {
     </div>
   );
 }
-
-export {
-  MissingPage as default,
-};

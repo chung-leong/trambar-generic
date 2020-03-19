@@ -3,7 +3,7 @@ import React from 'react';
 import { BlogList } from '../widgets/blog-list.jsx';
 import { BlogNavigation } from '../widgets/blog-navigation.jsx';
 
-function BlogCategoryPage(props) {
+export function BlogMainPage(props) {
   return (
     <div className="blog-main-page">
       <div className="contents">
@@ -15,7 +15,3 @@ function BlogCategoryPage(props) {
     </div>
   );
 }
-
-export {
-  BlogCategoryPage as default,
-};

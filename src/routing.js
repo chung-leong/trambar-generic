@@ -1,68 +1,58 @@
 import { DataSourceProxy } from 'trambar-www';
 
+import { InfoPage } from './pages/info-page.jsx';
+import { WikiPage } from './pages/wiki-page.jsx';
+import { ExcelPage } from './pages/excel-page.jsx';
+import { BlogMainPage } from './pages/blog-main-page.jsx';
+import { BlogCategoryPage } from './pages/blog-category-page.jsx';
+import { BlogTagPage } from './pages/blog-tag-page.jsx';
+import { BlogPostPage } from './pages/blog-post-page.jsx';
+import { SearchPage } from './pages/search-page.jsx';
+import { MissingPage } from './pages/missing-page.jsx';
+
 const routes = {
   'home': {
     path: '/',
-    load: (match) => {
-      match.params.module = require('./pages/info-page.jsx');
-    }
+    component: InfoPage,
   },
   'wiki': {
     path: '/wiki/${identifier}/${slug}/',
-    load: (match) => {
-      match.params.module = require('./pages/wiki-page.jsx');
-    }
+    component: WikiPage,
   },
   'excel': {
     path: '/excel/${identifier}/',
-    load: (match) => {
-      match.params.module = require('./pages/excel-page.jsx');
-    }
+    component: ExcelPage,
   },
   'blog': {
     path: '/blog/${identifier}/',
-    load: (match) => {
-      match.params.module = require('./pages/blog-main-page.jsx');
-    }
+    component: BlogMainPage,
   },
   'blog-category': {
     path: '/blog/${identifier}/categories/${slug}/',
-    load: (match) => {
-      match.params.module = require('./pages/blog-category-page.jsx');
-    }
+    component: BlogCategoryPage,
   },
   'blog-tag': {
     path: '/blog/${identifier}/tags/${slug}/',
-    load: (match) => {
-      match.params.module = require('./pages/blog-tag-page.jsx');
-    }
+    component: BlogTagPage,
   },
   'blog-post': {
     path: '/blog/${identifier}/${slug}/',
-    load: (match) => {
-      match.params.module = require('./pages/blog-post-page.jsx');
-    }
+    component: BlogPostPage,
   },
   'search': {
     path: '/search/',
     query: {
       q: '${search}',
     },
-    load: (match) => {
-      match.params.module = require('./pages/search-page.jsx');
-    }
+    component: SearchPage,
   },
   'info': {
     path: '/info/',
-    load: (match) => {
-      match.params.module = require('./pages/info-page.jsx');
-    }
+    component: InfoPage,
   },
   'missing': {
     path: '*',
-    load: (match) => {
-      match.params.module = require('./pages/missing-page.jsx');
-    }
+    component: MissingPage,
   },
 };
 

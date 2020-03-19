@@ -4,7 +4,7 @@ import { useProgress, useRichText } from 'trambar-www';
 import { BlogContents } from '../widgets/blog-contents.jsx';
 import { BlogNavigation } from '../widgets/blog-navigation.jsx';
 
-function BlogPostPage(props) {
+export function BlogPostPage(props) {
   return (
     <div className="blog-category-page">
       <div className="contents">
@@ -16,7 +16,3 @@ function BlogPostPage(props) {
     </div>
   );
 }
-
-export {
-  BlogPostPage as default,
-};

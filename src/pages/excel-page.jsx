@@ -2,7 +2,7 @@ import React from 'react';
 
 import { ExcelContents } from '../widgets/excel-contents.jsx';
 
-function ExcelPage(props) {
+export function ExcelPage(props) {
   return (
     <div className="blog-category-page">
       <div className="contents">
@@ -11,7 +11,3 @@ function ExcelPage(props) {
     </div>
   );
 }
-
-export {
-  ExcelPage as default,
-};

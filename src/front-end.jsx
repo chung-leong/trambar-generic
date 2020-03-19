@@ -75,7 +75,7 @@ export function FrontEnd(props) {
   }
 
   function renderCurrentPage() {
-    const Page = route.params.module.default;
+    const Page = route.routeManager.route.component;
     const props = { db, route };
     return (
       <ErrorBoundary route={route}>
