@@ -1,5 +1,6 @@
 const FS = require('fs');
 const Path = require('path');
+const URL = require('url');
 const CrossFetch = require('cross-fetch');
 const HTTP = require('http');
 const OS = require('os');
@@ -93,6 +94,11 @@ function getBaseURL() {
   let url = '';
   do {
     url = ReadlineSync.question(prompt).trim();
+    const parsed = URL.parse(url);
+    if (!parsed.hostname || !parsed.protocol) {
+      console.log('[Invalid URL]');
+      url = null;
+    }
   } while(!url);
   saveBaseURL(url);
   return url;
@@ -103,10 +109,6 @@ function saveBaseURL(url) {
   let ext = '.url';
   let nl = '\n';
   switch (OS.platform()) {
-    case 'win32':
-      lines.push('[InternetShortcut]');
-      nl = '\r\n';
-      break;
     case 'linux':
     case 'freebsd':
       lines.push(
@@ -117,6 +119,10 @@ function saveBaseURL(url) {
         'Icon=text-html'
       );
       ext = '.desktop';
+      break;
+    default:
+      lines.push('[InternetShortcut]');
+      nl = '\r\n';
       break;
   }
   lines.push('URL=' + url);
@@ -155,17 +161,40 @@ function generatePage(fs, codePath, path, lang, baseURL) {
   });
 }
 
+/**
+ * Compile a CommonJS module
+ * @param  {Buffer} buffer
+ * @param  {string} dirname
+ * @param  {string} filename
+ *
+ * @return {Object}
+ */
 function compileCode(buffer, dirname, filename) {
   const code = buffer.toString();
   const cjsHeader = '(function(require, exports, module, __dirname, __filename) {\n';
   const cjsTrailer = '\n})';
   const cjs = cjsHeader + code + cjsTrailer;
-  const f = eval(cjs);
+  const f = evalArg(cjs);
   const module = { exports: {} };
   f(require, module.exports, module, dirname, filename);
   return module.exports;
 }
 
+/**
+ * Evaluate code in clean context
+ *
+ * @return {Function}
+ */
+function evalArg() {
+  return eval(arguments[0]);
+}
+
+/**
+ * Return language most preferred by visitor
+ * @param  {Request} req
+ *
+ * @return {string}
+ */
 function getPreferredLanguage(req) {
   const accept = req.headers['accept-language'] || 'en';
   const tokens = accept.split(/\s*,\s*/);

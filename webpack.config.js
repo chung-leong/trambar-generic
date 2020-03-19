@@ -8,7 +8,7 @@ const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 const event = process.env.npm_lifecycle_event;
 
 const clientConfig = {
-  mode: (event === 'build' && false) ? 'production' : 'development',
+  mode: (event === 'build') ? 'production' : 'development',
   context: Path.resolve('./src'),
   entry: './www-entry.js',
   output: {
