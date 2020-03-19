@@ -1,1 +1,16 @@
-exports.ids=["locale-de"],exports.modules={56:function(e,r,s){"use strict";s.r(r),s.d(r,"default",(function(){return t}));var t={Close:"Schließen","Previous search":"Vorherige Suche","Previous searches":"Vorherige Suchanfragen",Category:"Kategorie",Categories:"Kategorien",Tag:"Tag",Tags:"Tags","Related article":"Verwandte Artikel","Related articles":"Verwandte Artikel","Search results":"Suchergebnisse","No results":"Keine Ergebnisse",Archived:"Archiviert"}}};
+exports.ids = ["locale-de"];
+exports.modules = {
+
+/***/ "./locales/locale-de.js":
+/*!******************************!*\
+  !*** ./locales/locale-de.js ***!
+  \******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return table; });\nvar table = {\n  \"Close\": \"Schließen\",\n  \"Previous search\": \"Vorherige Suche\",\n  \"Previous searches\": \"Vorherige Suchanfragen\",\n  \"Category\": \"Kategorie\",\n  \"Categories\": \"Kategorien\",\n  \"Tag\": \"Tag\",\n  \"Tags\": \"Tags\",\n  \"Related article\": \"Verwandte Artikel\",\n  \"Related articles\": \"Verwandte Artikel\",\n  \"Search results\": \"Suchergebnisse\",\n  \"No results\": \"Keine Ergebnisse\",\n  \"Archived\": \"Archiviert\"\n};\n\n\n//# sourceURL=webpack:///./locales/locale-de.js?");
+
+/***/ })
+
+};;

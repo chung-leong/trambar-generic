@@ -1,1 +1,16 @@
-exports.ids=["locale-nb"],exports.modules={62:function(e,r,t){"use strict";t.r(r),t.d(r,"default",(function(){return a}));var a={Close:"Lukk","Previous search":"Tidligere søk","Previous searches":"Tidligere søker",Category:"Kategori",Categories:"kategorier",Tag:"Tag",Tags:"Tags","Related article":"Relatert artikkel","Related articles":"Relaterte artikler","Search results":"Søkeresultater","No results":"Ingen resultater",Archived:"Arkivert"}}};
+exports.ids = ["locale-nb"];
+exports.modules = {
+
+/***/ "./locales/locale-nb.js":
+/*!******************************!*\
+  !*** ./locales/locale-nb.js ***!
+  \******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return table; });\nvar table = {\n  \"Close\": \"Lukk\",\n  \"Previous search\": \"Tidligere søk\",\n  \"Previous searches\": \"Tidligere søker\",\n  \"Category\": \"Kategori\",\n  \"Categories\": \"kategorier\",\n  \"Tag\": \"Tag\",\n  \"Tags\": \"Tags\",\n  \"Related article\": \"Relatert artikkel\",\n  \"Related articles\": \"Relaterte artikler\",\n  \"Search results\": \"Søkeresultater\",\n  \"No results\": \"Ingen resultater\",\n  \"Archived\": \"Arkivert\"\n};\n\n\n//# sourceURL=webpack:///./locales/locale-nb.js?");
+
+/***/ })
+
+};;

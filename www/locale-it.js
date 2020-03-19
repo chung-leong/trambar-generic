@@ -1,2 +1,32 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([["locale-it"],{95:function(e,r,i){"use strict";i.r(r),i.d(r,"default",(function(){return a}));var a={Close:"Chiudi","Previous search":"Ricerca precedente","Previous searches":"Ricerche precedenti",Category:"Categoria",Categories:"Categorie",Tag:"Tag",Tags:"Tag","Related article":"Articolo correlato","Related articles":"Articoli correlati","Search results":"Risultati di ricerca","No results":"Nessun risultato",Archived:"Archiviato"}}}]);
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["locale-it"],{
+
+/***/ "./locales/locale-it.js":
+/*!******************************!*\
+  !*** ./locales/locale-it.js ***!
+  \******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return table; });
+var table = {
+  "Close": "Chiudi",
+  "Previous search": "Ricerca precedente",
+  "Previous searches": "Ricerche precedenti",
+  "Category": "Categoria",
+  "Categories": "Categorie",
+  "Tag": "Tag",
+  "Tags": "Tag",
+  "Related article": "Articolo correlato",
+  "Related articles": "Articoli correlati",
+  "Search results": "Risultati di ricerca",
+  "No results": "Nessun risultato",
+  "Archived": "Archiviato"
+};
+
+
+/***/ })
+
+}]);
 //# sourceMappingURL=locale-it.js.map

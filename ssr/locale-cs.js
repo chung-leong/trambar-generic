@@ -1,1 +1,16 @@
-exports.ids=["locale-cs"],exports.modules={55:function(e,s,r){"use strict";r.r(s),r.d(s,"default",(function(){return a}));var a={Close:"Zavřít","Previous search":"Předchozí hledání","Previous searches":"Předchozí vyhledávání",Category:"Kategorie",Categories:"Kategorie",Tag:"Tag",Tags:"Tagy","Related article":"Související článek","Related articles":"Související články","Search results":"Výsledky vyhledávání","No results":"Žádné výsledky",Archived:"Archivovány"}}};
+exports.ids = ["locale-cs"];
+exports.modules = {
+
+/***/ "./locales/locale-cs.js":
+/*!******************************!*\
+  !*** ./locales/locale-cs.js ***!
+  \******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return table; });\nvar table = {\n  \"Close\": \"Zavřít\",\n  \"Previous search\": \"Předchozí hledání\",\n  \"Previous searches\": \"Předchozí vyhledávání\",\n  \"Category\": \"Kategorie\",\n  \"Categories\": \"Kategorie\",\n  \"Tag\": \"Tag\",\n  \"Tags\": \"Tagy\",\n  \"Related article\": \"Související článek\",\n  \"Related articles\": \"Související články\",\n  \"Search results\": \"Výsledky vyhledávání\",\n  \"No results\": \"Žádné výsledky\",\n  \"Archived\": \"Archivovány\"\n};\n\n\n//# sourceURL=webpack:///./locales/locale-cs.js?");
+
+/***/ })
+
+};;

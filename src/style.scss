@@ -27,532 +27,546 @@ $wiki-table-border-color: #cccccc;
 $narrow-ui-width: 700px;
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 BODY {
-    font-family: sans-serif;
-    margin: 0;
-    overflow-y: scroll;
+  font-family: sans-serif;
+  margin: 0;
+  overflow-y: scroll;
 }
 
 A {
-    &:link, &:visited {
-        color: $link-text-color;
+  &:link, &:visited {
+    color: $link-text-color;
 
-        &:hover {
-            color: $link-hover-color;
-        }
+    &:hover {
+      color: $link-hover-color;
     }
+  }
 }
 
 .page {
-    display: flex;
+  display: flex;
 
-    .contents {
-        flex: 1 1 auto;
-        overflow: hidden;
+  .contents {
+    flex: 1 1 auto;
+    overflow: hidden;
+  }
+
+  .side-bar {
+    flex: 0 0 20em;
+    margin-right: -1em;
+
+    @media screen and (max-width: $narrow-ui-width) {
+      display: none;
     }
 
-    .side-bar {
-        flex: 0 0 20em;
-        margin-right: -1em;
-
-        @media screen and (max-width: $narrow-ui-width) {
-            display: none;
-        }
-
-        @media print {
-            display: none;
-        }
+    @media print {
+      display: none;
     }
+  }
 }
 
 .navigation {
-    padding: 1em 0 1em 1em;
+  padding: 1em 0 1em 1em;
 
-    .box {
-        color: $side-box-text-color;
-        padding: 0.5em 0.5em 0.5em 0.5em;
-        border: 3px solid $side-box-border-color;
-        transition: opacity 0.3s;
-        margin-bottom: 1em;
+  .box {
+    color: $side-box-text-color;
+    padding: 0.5em 0.5em 0.5em 0.5em;
+    border: 3px solid $side-box-border-color;
+    transition: opacity 0.3s;
+    margin-bottom: 1em;
 
-        H4 {
-            margin: 0;
-        }
-
-        A {
-            &:link, &:visited {
-                text-decoration: none;
-            }
-        }
-
-        &.hidden {
-            opacity: 0;
-            transition: opacity 0s;
-        }
+    H4 {
+      margin: 0;
     }
+
+    A {
+      &:link, &:visited {
+        text-decoration: none;
+      }
+    }
+
+    &.hidden {
+      opacity: 0;
+      transition: opacity 0s;
+    }
+  }
 }
 
 .dialog-box {
-    display: flex;
-    position: relative;
-    flex-direction: column;
-    background-color: $dlg-background-color;
-    color: $dlg-text-color;
-    padding: 1em 1em 1em 1em;
-    box-shadow: 5px 5px 4px $dlg-shadow-color;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  background-color: $dlg-background-color;
+  color: $dlg-text-color;
+  padding: 1em 1em 1em 1em;
+  box-shadow: 5px 5px 4px $dlg-shadow-color;
 
-    .buttons {
-        flex: 0 0 auto;
-        padding-top: 0.8em;
+  .buttons {
+    flex: 0 0 auto;
+    padding-top: 0.8em;
 
-        .left {
-            float: left;
-        }
-
-        .right {
-            float: right;
-        }
-
-        BUTTON {
-            border: 1px solid #000;
-            font-size: 1.2em;
-        }
+    .left {
+      float: left;
     }
+
+    .right {
+      float: right;
+    }
+
+    BUTTON {
+      border: 1px solid #000;
+      font-size: 1.2em;
+    }
+  }
 }
 
 .front-end {
-    .page-container {
-        margin: 0 1em 1em 1em;
-    }
+  .page-container {
+    margin: 0 1em 1em 1em;
+  }
 }
 
 .blog-category-page {
-    @extend .page;
+  @extend .page;
 }
 
 .blog-main-page {
-    @extend .page;
+  @extend .page;
 }
 
 .blog-post-page {
-    @extend .page;
+  @extend .page;
 }
 
 .blog-tag-page {
-    @extend .page;
+  @extend .page;
 }
 
 .excel-page {
-    @extend .page;
+  @extend .page;
 }
 
 .info-page {
-    @extend .page;
+  @extend .page;
 }
 
 .missing-page {
-    @extend .page;
+  @extend .page;
 
-    .graphic {
-        flex: 0 0 10em;
+  .graphic {
+    flex: 0 0 10em;
 
-        IMG {
-            width: 100%;
-        }
+    IMG {
+      width: 100%;
     }
+  }
 
-    .text {
-        flex: 1 1 auto;
-        padding: 1em 1em 1em 1em;
-    }
+  .text {
+    flex: 1 1 auto;
+    padding: 1em 1em 1em 1em;
+  }
 }
 
 .search-page {
-    @extend .page;
+  @extend .page;
 }
 
 .wiki-page {
-    @extend .page;
+  @extend .page;
 }
 
 .blog-contents {
-    .date {
-        margin-top: -0.8em;
-    }
+  .date {
+    margin-top: -0.8em;
+  }
 
-    .article {
-        margin-top: 1em;
-    }
+  .article {
+    margin-top: 1em;
+  }
 
-    IMG {
-        max-width: 100%;
-    }
+  IMG {
+    max-width: 100%;
+  }
 }
 
 .blog-list {
-    .date {
-        margin-top: -0.8em;
-    }
+  .date {
+    margin-top: -0.8em;
+  }
 
-    .excerpt {
-        margin-top: 1em;
-    }
+  .excerpt {
+    margin-top: 1em;
+  }
 }
 
 .blog-navigation {
-    @extend .navigation;
+  @extend .navigation;
 
-    .categories {
-        padding-inline-start: 2em;
+  .categories {
+    padding-inline-start: 2em;
+  }
+
+  .tags {
+    padding-top: 0.8em;
+    padding-left: 1em;
+
+    SPAN {
+      &::after {
+        content: " ";
+      }
     }
-
-    .tags {
-        padding-top: 0.8em;
-        padding-left: 1em;
-
-        SPAN {
-            &::after {
-                content: " ";
-            }
-        }
-    }
+  }
 }
 
 .excel-contents {
-    .table-container {
-        box-sizing: content-box;
+  .table-container {
+    box-sizing: content-box;
+    border: 1px solid black;
+    overflow-x: auto;
+    overflow-y: auto;
+    max-width: calc(100% - 0.5em - 2px);
+    max-height: 50vh;
+    width: max-content;
+    margin-left: 0.5em;
+
+    TABLE {
+      width: max-content;
+      border-collapse: collapse;
+
+      TD, TH {
         border: 1px solid black;
-        overflow-x: auto;
-        overflow-y: auto;
-        max-width: calc(100% - 0.5em - 2px);
-        max-height: 50vh;
-        width: max-content;
-        margin-left: 0.5em;
+        padding: 2px 2px 2px 2px;
+        text-align: left;
+        max-width: 80vw;
+        vertical-align: top;
+      }
 
-        TABLE {
-            width: max-content;
-            border-collapse: collapse;
-
-            TD, TH {
-                border: 1px solid black;
-                padding: 2px 2px 2px 2px;
-                text-align: left;
-                max-width: 80vw;
-                vertical-align: top;
-            }
-
-            TR:first-child {
-                TH {
-                    border-top: 0;
-                }
-            }
-
-            TR:last-child {
-                TD {
-                    border-bottom: 0;
-                }
-            }
-
-            TR {
-                TD, TH {
-                    &:first-child {
-                        border-left: 0;
-                    }
-                }
-                TD, TH {
-                    &:last-child {
-                        border-right: 0;
-                    }
-                }
-            }
+      TR:first-child {
+        TH {
+          border-top: 0;
         }
+      }
 
-        IMG {
-            cursor: pointer;
+      TR:last-child {
+        TD {
+          border-bottom: 0;
         }
+      }
+
+      TR {
+        TD, TH {
+          &:first-child {
+            border-left: 0;
+          }
+        }
+        TD, TH {
+          &:last-child {
+            border-right: 0;
+          }
+        }
+      }
     }
+
+    IMG {
+      cursor: pointer;
+    }
+  }
 }
 
 .image-dialog-box {
-    @extend .dialog-box;
+  @extend .dialog-box;
 }
 
 .loading-animation {
-    text-align: center;
-    margin-top: 2em;
+  text-align: center;
+  margin-top: 2em;
 
-    .blocks {
-        display: inline-block;
-        position: relative;
-        width: 64px;
-        height: 64px;
-        opacity: 0.1;
+  .blocks {
+    display: inline-block;
+    position: relative;
+    width: 64px;
+    height: 64px;
+    opacity: 0.1;
 
-        div {
-            display: inline-block;
-            position: absolute;
-            left: 6px;
-            width: 13px;
-            background: $nav-background-color;
-            animation: loading-animation 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+    div {
+      display: inline-block;
+      position: absolute;
+      left: 6px;
+      width: 13px;
+      background: $nav-background-color;
+      animation: loading-animation 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
 
-            &:nth-child(1) {
-                left: 6px;
-                animation-delay: -0.24s;
-            }
+      &:nth-child(1) {
+        left: 6px;
+        animation-delay: -0.24s;
+      }
 
-            &:nth-child(2) {
-                left: 26px;
-                animation-delay: -0.12s;
-            }
+      &:nth-child(2) {
+        left: 26px;
+        animation-delay: -0.12s;
+      }
 
-            &:nth-child(3) {
-              left: 45px;
-              animation-delay: 0;
-            }
-        }
+      &:nth-child(3) {
+        left: 45px;
+        animation-delay: 0;
+      }
     }
+  }
 
-    @keyframes loading-animation {
-        0% {
-            top: 6px;
-            height: 51px;
-        }
-        50%, 100% {
-            top: 19px;
-            height: 26px;
-        }
+  @keyframes loading-animation {
+    0% {
+      top: 6px;
+      height: 51px;
     }
+    50%, 100% {
+      top: 19px;
+      height: 26px;
+    }
+  }
 }
 
 .overlay {
-    position: fixed;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  overflow: hidden;
+  z-index: 5000;
+  overscroll-behavior: contain;
+  -ms-scroll-chaining: none;
+
+  .background {
+    position: absolute;
     left: 0;
     right: 0;
     top: 0;
     bottom: 0;
-    overflow: hidden;
-    z-index: 5000;
-    overscroll-behavior: contain;
-    -ms-scroll-chaining: none;
+    background-color: #000;
+    transition: opacity 0.5s;
+  }
 
+  .foreground {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 90%;
+    transition: opacity 0.25s, top 0.25s;
+  }
+
+  &.show {
     .background {
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        background-color: #000;
-        transition: opacity 0.5s;
+      opacity: 0.5;
     }
-
     .foreground {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 90%;
-        transition: opacity 0.25s, top 0.25s;
+      opacity: 1;
     }
+  }
 
-    &.show {
-        .background {
-            opacity: 0.5;
-        }
-        .foreground {
-            opacity: 1;
-        }
+  &.hide {
+    .background {
+      opacity: 0;
     }
-
-    &.hide {
-        .background {
-            opacity: 0;
-        }
-        .foreground {
-            top: -30px;
-            opacity: 0;
-        }
+    .foreground {
+      top: -30px;
+      opacity: 0;
     }
+  }
 }
 
 .search-box {
-    clear: right;
-    float: right;
-    margin-left: 1em;
+  clear: right;
+  float: right;
+  margin-left: 1em;
 
-    INPUT {
-        border: 0;
-        padding: 3px 3px 3px 3px;
-        margin-right: 8px;
-        width: 20em;
-        vertical-align: middle;
+  INPUT {
+    border: 0;
+    padding: 3px 3px 3px 3px;
+    margin-right: 8px;
+    width: 20em;
+    vertical-align: middle;
+  }
+
+  A {
+    svg {
+      height: 1.5em;
+      padding: 0.25em 0.25em 0.25em 0.1em;
+      vertical-align: middle;
+
+      path {
+        fill: $nav-text-color;
+      }
+    }
+  }
+
+  @media screen and (max-width: $narrow-ui-width) {
+    float: none;
+    display: flex;
+
+    input {
+      flex: 1 1 auto;
     }
 
     A {
-        svg {
-            height: 1.5em;
-            padding: 0.25em 0.25em 0.25em 0.1em;
-            vertical-align: middle;
-
-            path {
-                fill: $nav-text-color;
-            }
-        }
+      flex: 0 0 auto;
     }
-
-    @media screen and (max-width: $narrow-ui-width) {
-        float: none;
-        display: flex;
-
-        input {
-            flex: 1 1 auto;
-        }
-
-        A {
-            flex: 0 0 auto;
-        }
-    }
+  }
 }
 
 .search-navigation {
-    @extend .navigation;
+  @extend .navigation;
 
-    .search {
-        padding-inline-start: 2em;
-    }
+  .search {
+    padding-inline-start: 2em;
+  }
 }
 
 .top-navigation {
-    color: $nav-text-color;
-    background-color: $nav-background-color;
-    padding: 0.5em 0.25em 0.25em 1em;
-    overflow: hidden;
+  color: $nav-text-color;
+  background-color: $nav-background-color;
+  padding: 0.5em 0.25em 0.25em 1em;
+  overflow: hidden;
 
-    .title {
-        float: left;
-        margin: 0 0 0.25em 0;
-    }
+  .title {
+    float: left;
+    margin: 0 0 0.25em 0;
+  }
 
-    .status, .git-tag {
-        float: right;
-        margin: 0 0.25em 0 0;
-    }
+  .status, .git-tag {
+    float: right;
+    margin: 0 0.25em 0 0;
+  }
 
-    .languages {
-        float: right;
-        user-select: none;
-        margin-right: 0.25em;
-
-        A {
-            text-transform: uppercase;
-        }
-    }
-
-    .buttons {
-        float: left;
-        clear: left;
-
-        .button {
-            display: inline-block;
-            padding: 0.25em 1em 0.25em 2px;
-        }
-    }
+  .languages {
+    float: right;
+    user-select: none;
+    margin-right: 0.25em;
 
     A {
-        &:link, &:visited {
-            color: $nav-text-color;
-            text-decoration: none;
-
-            &:hover {
-                color: $nav-hover-color;
-            }
-        }
+      text-transform: uppercase;
     }
+  }
 
-    @media print {
-        display: none;
+  .buttons {
+    float: left;
+    clear: left;
+
+    .button {
+      display: inline-block;
+      padding: 0.25em 1em 0.25em 2px;
     }
+  }
+
+  A {
+    &:link, &:visited {
+      color: $nav-text-color;
+      text-decoration: none;
+
+      &:hover {
+        color: $nav-hover-color;
+      }
+    }
+  }
+
+  @media print {
+    display: none;
+  }
 }
 
 .wiki-contents {
-    IMG {
-        vertical-align: middle;
-        cursor: pointer;
+  IMG {
+    vertical-align: middle;
+    cursor: pointer;
+  }
+
+  BLOCKQUOTE {
+    color: $wiki-blockquote-text-color;
+    background-color: $wiki-blockquote-background-color;
+    margin-left: 0;
+    padding: 0.5em 0.5em 0.5em 1.5em;
+    border-left: 4px solid $wiki-blockquote-border-color;
+
+
+    P:first-child {
+      margin-top: 0;
     }
 
-    BLOCKQUOTE {
-        color: $wiki-blockquote-text-color;
-        background-color: $wiki-blockquote-background-color;
-        margin-left: 0;
-        padding: 0.5em 0.5em 0.5em 1.5em;
-        border-left: 4px solid $wiki-blockquote-border-color;
+    P:last-child {
+      margin-bottom: 0;
+    }
+  }
 
+  TABLE {
+    border: 1px solid $wiki-table-border-color;
+    border-collapse: collapse;
 
-        P:first-child {
-            margin-top: 0;
-        }
-
-        P:last-child {
-            margin-bottom: 0;
-        }
+    TH, TD {
+      text-align: left;
+      border: 1px solid $wiki-table-border-color;
+      padding: 0.25em 0.25em 0.25em 0.25em;
     }
 
-    TABLE {
-        border: 1px solid $wiki-table-border-color;
-        border-collapse: collapse;
-
-        TH, TD {
-            text-align: left;
-            border: 1px solid $wiki-table-border-color;
-            padding: 0.25em 0.25em 0.25em 0.25em;
-        }
-
-        TH {
-            border-bottom: 2px double $wiki-table-border-color;
-        }
+    TH {
+      border-bottom: 2px double $wiki-table-border-color;
     }
+  }
+
+  CODE {
+    color: $wiki-code-inline-text-color;
+    background-color: $wiki-code-inline-background-color;
+    padding: 2px 4px 2px 4px;
+  }
+
+  PRE {
+    border: 1px solid $wiki-code-border-color;
+    background-color: $wiki-code-background-color;
+    padding: 0.75em 0.75em 0.75em 0.75em;
 
     CODE {
-        color: $wiki-code-inline-text-color;
-        background-color: $wiki-code-inline-background-color;
-        padding: 2px 4px 2px 4px;
+      color: $wiki-code-text-color;
+      background-color: transparent;
+      padding: 0;
     }
-
-    PRE {
-        border: 1px solid $wiki-code-border-color;
-        background-color: $wiki-code-background-color;
-        padding: 0.75em 0.75em 0.75em 0.75em;
-
-        CODE {
-            color: $wiki-code-text-color;
-            background-color: transparent;
-            padding: 0;
-        }
-    }
+  }
 }
 
 .wiki-navigation {
-    @extend .navigation;
+  @extend .navigation;
 
-    .pages {
-        padding-inline-start: 2em;
+  .pages {
+    padding-inline-start: 2em;
+  }
+}
+
+.error-boundary {
+    border: 3px solid red;
+    color: red;
+    padding: 0.5em 0.5em 0.5em 0.5em;
+    margin: 1em 1em 1em 1em;
+    font-size: 1.2em;
+    font-weight: bold;
+    user-select: text;
+
+    PRE {
+        font-size: 0.8em;
     }
 }
 
 #ssr-error {
-    padding: 1em;
-    overflow: auto;
-    margin: 0;
-    color: red;
-    background-color: lightyellow;
+  padding: 1em;
+  overflow: auto;
+  margin: 0;
+  color: red;
+  background-color: lightyellow;
 
-    &:empty {
-        display: none;
-    }
+  &:empty {
+    display: none;
+  }
 }

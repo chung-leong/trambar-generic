@@ -1,1 +1,16 @@
-exports.ids=["locale-fi"],exports.modules={58:function(e,t,i){"use strict";i.r(t),i.d(t,"default",(function(){return a}));var a={Close:"Sulje","Previous search":"Edellinen haku","Previous searches":"Aiemmat haut",Category:"Kategoria",Categories:"Kategoriat",Tag:"Tag",Tags:"Tagit","Related article":"Aiheeseen liittyvä artikkeli","Related articles":"Aiheeseen liittyvät artikkelit","Search results":"Hakutulokset","No results":"Ei tuloksia",Archived:"Arkistoitu"}}};
+exports.ids = ["locale-fi"];
+exports.modules = {
+
+/***/ "./locales/locale-fi.js":
+/*!******************************!*\
+  !*** ./locales/locale-fi.js ***!
+  \******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return table; });\nvar table = {\n  \"Close\": \"Sulje\",\n  \"Previous search\": \"Edellinen haku\",\n  \"Previous searches\": \"Aiemmat haut\",\n  \"Category\": \"Kategoria\",\n  \"Categories\": \"Kategoriat\",\n  \"Tag\": \"Tag\",\n  \"Tags\": \"Tagit\",\n  \"Related article\": \"Aiheeseen liittyvä artikkeli\",\n  \"Related articles\": \"Aiheeseen liittyvät artikkelit\",\n  \"Search results\": \"Hakutulokset\",\n  \"No results\": \"Ei tuloksia\",\n  \"Archived\": \"Arkistoitu\"\n};\n\n\n//# sourceURL=webpack:///./locales/locale-fi.js?");
+
+/***/ })
+
+};;
